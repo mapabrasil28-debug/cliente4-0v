@@ -3,132 +3,450 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#FF2D78">
 <title>BLIM — Cliente</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{
-  --pk:#FF2D78;--pk2:#FF6B9D;--pks:#FFF0F5;--pkm:#FFD6E7;
-  --dk:#1C1C1E;--g4:#636366;--g5:#8E8E93;--g6:#AEAEB2;
-  --g7:#C7C7CC;--g8:#D1D1D6;--g9:#E5E5EA;--g10:#F2F2F7;
-  --ok:#34C759;--er:#FF3B30;--wa:#FF9500;--in:#007AFF;
-  --r:14px;--rl:20px;--rx:26px;--rf:999px;
-  --sh:0 4px 20px rgba(255,45,120,.15);
-  --shb:0 2px 8px rgba(0,0,0,.08);
-  --f:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
-html,body{height:100%;overflow:hidden;background:#000}
-body{font-family:var(--f);color:var(--dk);-webkit-font-smoothing:antialiased}
 
-/* SPLASH SCREEN */
-#splash{position:fixed;inset:0;background:linear-gradient(135deg,#0A0A0F 0%,#1A0A1A 100%);display:flex;align-items:center;justify-content:center;z-index:100000;flex-direction:column;transition:opacity .5s ease}
-#splash.hidden{opacity:0;pointer-events:none}
-.splash-logo{font-size:72px;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--pk2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-3px;margin-bottom:16px;animation:splashFadeIn 0.8s ease-out, splashPulse 2s ease-in-out infinite}
-.splash-sub{font-size:14px;color:rgba(255,255,255,.3);font-weight:500;letter-spacing:2px;animation:splashFadeIn 1s ease-out}
-@keyframes splashFadeIn{0%{opacity:0;transform:scale(0.9)}100%{opacity:1;transform:scale(1)}}
-@keyframes splashPulse{0%,100%{opacity:1}50%{opacity:0.7}}
+:root {
+  --pk: #FF2D78;
+  --pk2: #FF6B9D;
+  --pks: #FFF0F5;
+  --dk: #1C1C1E;
+  --g5: #8E8E93;
+  --g9: #E5E5EA;
+  --g10: #F2F2F7;
+  --ok: #34C759;
+  --er: #FF3B30;
+  --rf: 999px;
+  --r: 14px;
+  --rl: 20px;
+  --f: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
 
-#app{max-width:430px;margin:0 auto;height:100vh;background:#fff;position:relative;overflow:hidden}
-.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;transform:translateX(100%);transition:transform .38s cubic-bezier(.32,.72,0,1);z-index:1;overflow:hidden}
-.scr.on{transform:translateX(0);z-index:10}
-.sb{height:max(34px,env(safe-area-inset-bottom));flex-shrink:0}
-.btn{display:flex;align-items:center;justify-content:center;width:100%;padding:17px 24px;border:none;border-radius:var(--rf);font-family:var(--f);font-size:17px;font-weight:700;cursor:pointer;transition:transform .15s}
-.btn:active{transform:scale(.97)}
-.bpk{background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;box-shadow:0 6px 24px rgba(255,45,120,.38)}
-.bgh{background:var(--g10);color:var(--dk)}
-.ber{background:linear-gradient(135deg,var(--er),#FF6B6B);color:#fff}
-.inp{width:100%;padding:15px 16px;background:var(--g10);border:1.5px solid transparent;border-radius:10px;font-family:var(--f);font-size:16px;color:var(--dk);outline:none}
-.inp:focus{background:#fff;border-color:var(--pk);box-shadow:0 0 0 4px rgba(255,45,120,.08)}
-.iw{margin-bottom:14px}
-.iw label{display:block;font-size:13px;font-weight:600;color:var(--g4);margin-bottom:6px}
-textarea.inp{resize:none;height:80px}
-.nb{height:60px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-top:.5px solid var(--g9);display:flex;flex-shrink:0;z-index:50}
-.ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
-.ni .ic{font-size:23px}
-.ni .lb{font-size:10px;font-weight:600;color:var(--g5)}
-.ni.on .lb{color:var(--pk)}
-.tb{padding:14px 20px 10px;display:flex;align-items:center;gap:12px;flex-shrink:0;background:#fff;border-bottom:.5px solid var(--g9)}
-.tt{flex:1;font-size:17px;font-weight:700;text-align:center}
-.bk{width:38px;height:38px;border-radius:var(--rf);background:var(--g10);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--pk);flex-shrink:0}
-.ph{width:38px}
-.sc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.sc::-webkit-scrollbar{display:none}
-.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center;position:relative;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
-.lm{width:88px;height:88px;border-radius:30px;background:linear-gradient(135deg,var(--pk),#FF8FB3);display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:22px;box-shadow:0 10px 36px rgba(255,45,120,.32);animation:fl 3s ease-in-out infinite}
-@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.lt{font-size:52px;font-weight:800;letter-spacing:-3px;margin-bottom:6px;background:linear-gradient(135deg,var(--pk),#FF8FB3);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.htop{background:#fff;flex-shrink:0}
-.gr{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px}
-.av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--pk),var(--pk2));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;box-shadow:0 4px 14px rgba(255,45,120,.3);cursor:pointer}
-.lb2{display:flex;align-items:center;gap:8px;background:var(--pks);border-radius:10px;padding:11px 14px;margin:0 16px 12px;cursor:pointer}
-.cbar{background:#fff;border-bottom:.5px solid var(--g9);flex-shrink:0}
-.ctabs{display:flex;gap:7px;padding:12px 16px;overflow-x:auto}
-.ctabs::-webkit-scrollbar{display:none}
-.ct{padding:8px 16px;border-radius:var(--rf);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;border:1.5px solid var(--g9);color:var(--g4);background:#fff;flex-shrink:0}
-.ct.on{background:var(--pk);color:#fff;border-color:var(--pk);box-shadow:0 4px 14px rgba(255,45,120,.32)}
-.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
-.cc{background:#fff;border-radius:var(--r);padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;border:1.5px solid transparent;box-shadow:var(--shb)}
-.cc:active{transform:scale(.94)}
-.cc.on{border-color:var(--pk);box-shadow:var(--sh)}
-.ph2{background:linear-gradient(155deg,var(--pk),#FF8FB3);margin:16px;border-radius:var(--rx);padding:30px 24px;color:#fff;text-align:center}
-.pr{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r);margin-bottom:9px;cursor:pointer;background:var(--g10);border:2px solid transparent}
-.pr.on{background:var(--pks);border-color:var(--pk)}
-.pck{width:24px;height:24px;border-radius:50%;border:2px solid var(--g7);margin-left:auto;display:flex;align-items:center;justify-content:center;font-size:12px}
-.pr.on .pck{background:var(--pk);border-color:var(--pk);color:#fff}
-.gbar{display:flex;align-items:center;gap:10px;border-radius:10px;padding:11px 14px;margin-bottom:16px;background:var(--pks)}
-.sp2{width:20px;height:20px;border:2.5px solid var(--pk2);border-top-color:var(--pk);border-radius:50%;animation:sp .8s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-#map1,#map2{position:absolute;inset:0;z-index:1}
-.leaflet-control-zoom{border:none!important;border-radius:14px!important;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.15)!important}
-.leaflet-control-zoom a{width:42px!important;height:42px!important;line-height:42px!important;font-size:20px!important;font-weight:800!important;color:var(--pk)!important;background:#fff!important;border:none!important}
-.mtop{position:absolute;top:12px;left:12px;right:12px;z-index:400}
-.mbot{position:absolute;bottom:0;left:0;right:0;z-index:400;padding:14px 14px 36px}
-.gc{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-radius:var(--rx);padding:18px 20px;box-shadow:0 8px 40px rgba(0,0,0,.14)}
-.pr3{height:3px;background:var(--g9);border-radius:2px;margin-top:12px;overflow:hidden}
-.pf{height:100%;background:linear-gradient(90deg,var(--pk),var(--pk2));border-radius:2px;transition:width .8s ease}
-.pw{display:flex;align-items:center;gap:12px}
-.pr4{width:40px;height:40px;border-radius:50%;background:var(--pks);display:flex;align-items:center;justify-content:center;position:relative}
-.pr4::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--pk);animation:pu 1.6s ease-out infinite}
-@keyframes pu{0%{transform:scale(1);opacity:.9}100%{transform:scale(2);opacity:0}}
-.pd{width:18px;height:18px;border-radius:50%;background:var(--pk)}
-.mk-me{width:20px;height:20px;background:var(--pk);border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 4px rgba(255,45,120,.25);animation:mkp 2s ease-in-out infinite}
-@keyframes mkp{0%,100%{box-shadow:0 0 0 4px rgba(255,45,120,.25)}50%{box-shadow:0 0 0 10px rgba(255,45,120,0)}}
-.tlw{padding:0 20px}
-.tli{display:flex;gap:0}
-.tld{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:700}
-.tld.dk{background:var(--pk);color:#fff}
-.tld.wt{background:var(--g9);color:var(--g5)}
-.tll{flex:none;width:2px;background:var(--g9);margin:2px 13px}
-.tlb{background:none;border:none;color:var(--pk);font-family:var(--f);font-size:15px;font-weight:600;cursor:pointer;padding:12px 0;width:100%;text-align:center}
-.div{display:flex;align-items:center;gap:12px;color:var(--g6);font-size:13px;margin:20px 0}
-.div::before,.div::after{content:'';flex:1;height:.5px;background:var(--g9)}
-.tbox{background:var(--g10);border-radius:var(--r);padding:14px;height:130px;overflow-y:auto;font-size:12px;line-height:1.75;color:var(--g4);margin-bottom:12px}
-.cr{display:flex;align-items:flex-start;gap:10px;margin-bottom:18px}
-.cr input[type=checkbox]{width:20px;height:20px;accent-color:var(--pk);flex-shrink:0;margin-top:2px}
-.cr span{font-size:13px;line-height:1.5;color:#48484A}
-.cr span strong{color:var(--pk)}
-.rs2{font-size:46px;cursor:pointer;transition:transform .15s;line-height:1}
-.rs2.on{transform:scale(1.15)}
-.bd2{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rf);font-size:12px;font-weight:600}
-.bgk{background:#E8F8EF;color:var(--ok)}
-.bpk2{background:var(--pks);color:var(--pk)}
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(28,28,30,.92);backdrop-filter:blur(10px);color:#fff;padding:13px 22px;border-radius:var(--rf);font-size:14px;font-weight:600;z-index:9999;opacity:0;transition:all .32s;pointer-events:none}
-.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-.mrow{display:flex;align-items:center;gap:12px;padding:15px 16px;background:#fff;border-radius:var(--r);margin-bottom:3px;cursor:pointer;box-shadow:var(--shb)}
-.mic{width:36px;height:36px;border-radius:10px;background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:17px}
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  font-family: var(--f);
+  background: #fff;
+}
+
+#app {
+  max-width: 430px;
+  margin: 0 auto;
+  height: 100vh;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Telas */
+.scr {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.scr.on {
+  transform: translateX(0);
+  z-index: 10;
+}
+
+.sc {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.sb {
+  height: 34px;
+}
+
+/* Botões */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 17px 24px;
+  border: none;
+  border-radius: var(--rf);
+  font-family: var(--f);
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.bpk {
+  background: linear-gradient(135deg, var(--pk), var(--pk2));
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(255, 45, 120, 0.38);
+}
+
+.bgh {
+  background: var(--g10);
+  color: var(--dk);
+}
+
+.ber {
+  background: linear-gradient(135deg, var(--er), #FF6B6B);
+  color: #fff;
+}
+
+/* Inputs */
+.inp {
+  width: 100%;
+  padding: 15px 16px;
+  background: var(--g10);
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  font-family: var(--f);
+  font-size: 16px;
+  color: var(--dk);
+  outline: none;
+}
+
+.inp:focus {
+  background: #fff;
+  border-color: var(--pk);
+}
+
+.iw {
+  margin-bottom: 14px;
+}
+
+.iw label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--g5);
+  margin-bottom: 6px;
+}
+
+/* Header */
+.tb {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border-bottom: 0.5px solid var(--g9);
+}
+
+.tt {
+  flex: 1;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.bk {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--rf);
+  background: var(--g10);
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--pk);
+}
+
+/* Hero */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.lm {
+  width: 88px;
+  height: 88px;
+  background: linear-gradient(135deg, var(--pk), #FF8FB3);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  margin-bottom: 22px;
+  animation: fl 3s infinite;
+}
+
+@keyframes fl {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.lt {
+  font-size: 52px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--pk), #FF8FB3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(28, 28, 30, 0.92);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: var(--rf);
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.32s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.on {
+  opacity: 1;
+}
+
+/* Splash */
+#splash {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0A0A0F 0%, #1A0A1A 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  flex-direction: column;
+  transition: opacity 0.5s;
+}
+
+#splash.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-icon {
+  width: 88px;
+  height: 88px;
+  background: linear-gradient(135deg, var(--pk), #FF8FB3);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  margin-bottom: 22px;
+  animation: fl 3s infinite;
+}
+
+.splash-logo {
+  font-size: 72px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--pk), var(--pk2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+  animation: splashPulse 2s infinite;
+}
+
+.splash-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes splashPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Grid e Categorias */
+.cgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 14px;
+}
+
+.cc {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  border: 1px solid var(--g9);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.cc:active {
+  transform: scale(0.96);
+}
+
+/* Bottom Nav */
+.nb {
+  height: 60px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  border-top: 0.5px solid var(--g9);
+  display: flex;
+}
+
+.ni {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.ni .ic {
+  font-size: 23px;
+}
+
+.ni .lb {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--g5);
+}
+
+.ni.on .lb {
+  color: var(--pk);
+}
+
+/* Mapa */
+#map1, #map2 {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+
+/* Forma de pagamento */
+.pr {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 9px;
+  cursor: pointer;
+  background: var(--g10);
+  border: 2px solid transparent;
+}
+
+.pr.on {
+  background: var(--pks);
+  border-color: var(--pk);
+}
+
+.pck {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--g7);
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.pr.on .pck {
+  background: var(--pk);
+  border-color: var(--pk);
+  color: #fff;
+  content: "✓";
+}
+
+/* Status */
+.tld {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tld.dk {
+  background: var(--pk);
+  color: #fff;
+}
+
+.tld.wt {
+  background: var(--g9);
+  color: var(--g5);
+}
+
+.tll {
+  width: 2px;
+  background: var(--g9);
+  margin: 2px 13px;
+}
+
+.tli {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* Loading */
+.sp {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--pk2);
+  border-top-color: var(--pk);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 </style>
 </head>
 <body>
 
-<!-- SPLASH SCREEN -->
 <div id="splash">
+  <div class="splash-icon">💝</div>
   <div class="splash-logo">BLIM</div>
   <div class="splash-sub">serviços sob medida</div>
 </div>
@@ -136,271 +454,128 @@ textarea.inp{resize:none;height:80px}
 <div id="app">
 <div class="toast" id="toast"></div>
 
-<!-- SPLASH / TELA INICIAL -->
+<!-- Tela inicial -->
 <div class="scr on" id="s-splash">
   <div class="hero">
-    <div class="blob" style="width:280px;height:280px;background:rgba(255,45,120,.08);top:-60px;right:-80px"></div>
-    <div class="blob" style="width:200px;height:200px;background:rgba(255,107,157,.06);bottom:-30px;left:-60px"></div>
     <div class="lm">💝</div>
     <div class="lt">blim</div>
-    <p style="font-size:15px;color:var(--g5);font-weight:500;margin-bottom:40px">Serviços sob medida para você 💕</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-      <span style="padding:7px 14px;background:var(--pks);border-radius:var(--rf);font-size:13px;font-weight:600;color:var(--pk)">⚡33 categorias</span>
-      <span style="padding:7px 14px;background:var(--pks);border-radius:var(--rf);font-size:13px;font-weight:600;color:var(--pk)">🔒 100% seguro</span>
-      <span style="padding:7px 14px;background:var(--pks);border-radius:var(--rf);font-size:13px;font-weight:600;color:var(--pk)">⚡ Rápido</span>
-    </div>
-  </div>
-  <div style="padding:0 28px">
-    <button class="btn bpk" onclick="nav('s-register')" style="margin-bottom:10px">Criar minha conta</button>
-    <button class="tlb" onclick="nav('s-login')">Já tenho conta → Entrar</button>
-    <div class="sb"></div>
+    <p style="margin-bottom: 40px; color: var(--g5);">Serviços sob medida para você 💕</p>
+    <button class="btn bpk" onclick="nav('s-register')" style="margin-bottom: 10px;">Criar minha conta</button>
+    <button class="tlb" style="background: none; border: none; color: var(--pk); font-weight: 600; padding: 12px;" onclick="nav('s-login')">Já tenho conta → Entrar</button>
   </div>
 </div>
 
-<!-- REGISTER -->
+<!-- Cadastro -->
 <div class="scr" id="s-register">
   <div class="tb"><button class="bk" onclick="nav('s-splash')">‹</button><div class="tt">Criar conta</div><div class="ph"></div></div>
-  <div class="sc" style="padding:4px 24px 0">
-    <h2 style="font-size:26px;font-weight:800;margin-bottom:4px">Seus dados</h2>
-    <p style="font-size:14px;color:var(--g5);margin-bottom:22px">Preencha para criar sua conta grátis</p>
-    <div class="iw"><label>Nome completo</label><input class="inp" id="rn" type="text" placeholder="Seu nome completo"></div>
+  <div class="sc">
+    <div class="iw"><label>Nome completo</label><input class="inp" id="rn" type="text" placeholder="Seu nome"></div>
     <div class="iw"><label>CPF</label><input class="inp" id="rcpf" type="tel" placeholder="000.000.000-00"></div>
     <div class="iw"><label>E-mail</label><input class="inp" id="re" type="email" placeholder="seu@email.com"></div>
     <div class="iw"><label>Celular</label><input class="inp" id="rphone" type="tel" placeholder="(00) 90000-0000"></div>
-    <div class="iw"><label>Senha</label><input class="inp" id="rw" type="password" placeholder="Mínimo 8 caracteres"></div>
-    <div class="cr"><input type="checkbox" id="rt"><span>Li e aceito os <strong>Termos de Uso</strong> da BLIM</span></div>
-    <button class="btn bpk" onclick="doRegister()">Criar conta grátis 💖</button>
-    <div class="sb"></div>
+    <div class="iw"><label>Senha</label><input class="inp" id="rpw" type="password" placeholder="Mínimo 8 caracteres"></div>
+    <div class="cr" style="display: flex; gap: 10px; margin-bottom: 20px;"><input type="checkbox" id="rt"><span>Aceito os <strong>termos</strong></span></div>
+    <button class="btn bpk" onclick="doRegister()">Criar conta</button>
   </div>
 </div>
 
-<!-- LOGIN -->
+<!-- Login -->
 <div class="scr" id="s-login">
   <div class="tb"><button class="bk" onclick="nav('s-splash')">‹</button><div class="tt">Entrar</div><div class="ph"></div></div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 24px">
-    <h2 style="font-size:26px;font-weight:800;margin-bottom:4px">Bem-vinda de volta 💖</h2>
-    <p style="font-size:14px;color:var(--g5);margin-bottom:28px">Entre na sua conta BLIM</p>
+  <div class="sc">
     <div class="iw"><label>E-mail</label><input class="inp" id="le" type="email" placeholder="seu@email.com"></div>
     <div class="iw"><label>Senha</label><input class="inp" id="lp" type="password" placeholder="••••••••"></div>
-    <div id="div-2fa" style="display:none" class="iw"><label>Código 2FA</label><input class="inp" id="code2fa" type="text" placeholder="000000"></div>
-    <button class="tlb" onclick="nav('s-forgot')">Esqueci minha senha</button>
+    <div id="div-2fa" style="display: none;" class="iw"><label>Código 2FA</label><input class="inp" id="code2fa" type="text" placeholder="000000"></div>
+    <button class="tlb" style="background: none; border: none; color: var(--pk); padding: 12px; width: 100%; text-align: right;" onclick="nav('s-forgot')">Esqueci minha senha</button>
     <button class="btn bpk" onclick="doLogin()">Entrar</button>
-    <div class="div">ou</div>
+    <div style="margin: 20px 0; text-align: center;">ou</div>
     <button class="btn bgh" onclick="nav('s-register')">Criar conta grátis</button>
-    <div class="sb"></div>
   </div>
 </div>
 
-<!-- ESQUECI SENHA -->
+<!-- Esqueci senha -->
 <div class="scr" id="s-forgot">
   <div class="tb"><button class="bk" onclick="nav('s-login')">‹</button><div class="tt">Recuperar senha</div><div class="ph"></div></div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 24px">
-    <p style="margin-bottom:20px;text-align:center;color:var(--g5)">Digite seu e-mail para recuperar a senha</p>
-    <div class="iw"><label>E-mail</label><input class="inp" id="reset-email" type="email" placeholder="seu@email.com"></div>
+  <div class="sc">
+    <p style="margin-bottom: 20px;">Digite seu e-mail</p>
+    <div class="iw"><input class="inp" id="reset-email" type="email" placeholder="seu@email.com"></div>
     <button class="btn bpk" onclick="forgotPassword()">Enviar link</button>
-    <button class="btn bgh" onclick="nav('s-login')" style="margin-top:10px">Voltar</button>
+    <button class="btn bgh" onclick="nav('s-login')" style="margin-top: 10px;">Voltar</button>
   </div>
 </div>
 
-<!-- REDEFINIR SENHA -->
+<!-- Redefinir senha -->
 <div class="scr" id="s-reset-password">
   <div class="tb"><button class="bk" onclick="nav('s-login')">‹</button><div class="tt">Nova senha</div><div class="ph"></div></div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 24px">
-    <div class="iw"><label>Nova senha</label><input class="inp" id="new-password" type="password" placeholder="Mínimo 8 caracteres"></div>
-    <div class="iw"><label>Confirmar</label><input class="inp" id="confirm-password" type="password" placeholder="Digite novamente"></div>
-    <button class="btn bpk" onclick="submitResetPassword()">Redefinir senha</button>
+  <div class="sc">
+    <div class="iw"><input class="inp" id="new-password" type="password" placeholder="Nova senha"></div>
+    <div class="iw"><input class="inp" id="confirm-password" type="password" placeholder="Confirmar senha"></div>
+    <button class="btn bpk" onclick="submitResetPassword()">Redefinir</button>
   </div>
 </div>
 
-<!-- CONFIGURAR 2FA -->
-<div class="scr" id="s-2fa">
-  <div class="tb"><button class="bk" onclick="nav('s-profile')">‹</button><div class="tt">2FA</div><div class="ph"></div></div>
-  <div class="sc" id="content-2fa" style="padding:20px;text-align:center"></div>
-</div>
-
-<!-- HOME -->
-<div class="scr" id="s-home" style="background:var(--g10)">
-  <div class="htop">
-    <div class="gr">
-      <div><div style="font-size:14px;color:var(--g5);font-weight:500">Olá,</div><div style="font-size:22px;font-weight:800" id="gname">Visitante 💖</div></div>
-      <div class="av" id="gav" onclick="nav('s-profile')">B</div>
+<!-- Home -->
+<div class="scr" id="s-home">
+  <div style="padding: 20px; background: #fff;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <div><div style="font-size: 14px; color: var(--g5);">Olá,</div><div style="font-size: 22px; font-weight: 800;" id="gname">Visitante 💖</div></div>
+      <div class="av" style="width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--pk), var(--pk2)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; cursor: pointer;" onclick="nav('s-profile')">B</div>
     </div>
-    <div class="lb2" onclick="getUserLocation()">
-      <span>📍</span>
-      <span id="loctxt" style="font-size:13px;font-weight:600;color:var(--pk);flex:1">Toque para buscar localização</span>
-      <span style="color:var(--pk2);font-size:11px">▾</span>
-    </div>
-    <div class="cbar"><div class="ctabs" id="ctabs"></div></div>
+    <div class="cbar"><div class="ctabs" id="ctabs" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px;"></div></div>
   </div>
-  <div class="sc"><div class="cgrid" id="cgrid"></div><div class="sb"></div></div>
+  <div class="sc"><div class="cgrid" id="cgrid"></div></div>
   <div class="nb">
-    <div class="ni on"><div class="ic">🏠</div><div class="lb">Início</div></div>
+    <div class="ni on" onclick="nav('s-home')"><div class="ic">🏠</div><div class="lb">Início</div></div>
     <div class="ni" onclick="loadMyRequests()"><div class="ic">📋</div><div class="lb">Pedidos</div></div>
     <div class="ni" onclick="nav('s-profile')"><div class="ic">👤</div><div class="lb">Perfil</div></div>
   </div>
 </div>
 
-<!-- SERVIÇOS -->
-<div class="scr" id="s-svcs">
-  <div class="tb"><button class="bk" onclick="nav('s-home')">‹</button><div class="tt" id="svct">Serviços</div><div class="ph"></div></div>
-  <div class="sc" id="svcl" style="background:#fff"></div>
-</div>
-
-<!-- MEUS PEDIDOS -->
+<!-- Pedidos -->
 <div class="scr" id="s-requests">
   <div class="tb"><button class="bk" onclick="nav('s-home')">‹</button><div class="tt">Meus Pedidos</div><div class="ph"></div></div>
-  <div class="sc" id="requests-list" style="padding:16px"></div>
+  <div class="sc" id="requests-list" style="padding: 16px;"></div>
 </div>
 
-<!-- PAGAMENTO -->
-<div class="scr" id="s-pay">
-  <div class="tb"><button class="bk" id="paybk">‹</button><div class="tt">Confirmar serviço</div><div class="ph"></div></div>
-  <div class="sc">
-    <div class="ph2">
-      <div style="font-size:12px;opacity:.85;margin-bottom:8px">VALOR</div>
-      <div style="font-size:52px;font-weight:800;letter-spacing:-2px" id="pprice">R$ 0</div>
-      <div style="font-size:15px;margin-top:4px" id="psvc">Serviço</div>
-    </div>
-    <div style="padding:4px 16px 8px;font-size:17px;font-weight:800">Forma de pagamento</div>
-    <div style="padding:0 16px">
-      <div class="pr on" onclick="selPay(this,'pix')"><div>⚡</div><div><div style="font-weight:700">PIX</div><div style="font-size:12px;color:var(--g5)">Instantâneo</div></div><div class="pck">✓</div></div>
-      <div class="pr" onclick="selPay(this,'credit')"><div>💳</div><div><div style="font-weight:700">Crédito</div><div style="font-size:12px;color:var(--g5)">Até 12x</div></div><div class="pck"></div></div>
-      <div class="pr" onclick="selPay(this,'debit')"><div>🏦</div><div><div style="font-weight:700">Débito</div><div style="font-size:12px;color:var(--g5)">Débito imediato</div></div><div class="pck"></div></div>
-      <div class="pr" onclick="selPay(this,'cash')"><div>💵</div><div><div style="font-weight:700">Dinheiro</div><div style="font-size:12px;color:var(--g5)">Pague ao prestador</div></div><div class="pck"></div></div>
-      <button class="btn bpk" onclick="nav('s-addr')">Continuar →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ENDEREÇO -->
-<div class="scr" id="s-addr">
-  <div class="tb"><button class="bk" onclick="nav('s-pay')">‹</button><div class="tt">Seu endereço</div><div class="ph"></div></div>
-  <div class="sc" style="padding:16px 20px 0">
-    <div id="gbar" class="gbar">
-      <div id="gspin" class="sp2"></div>
-      <div id="gtxt" style="font-size:13px;font-weight:600;color:var(--pk)">Toque para detectar localização</div>
-    </div>
-    <div class="iw"><label>Rua *</label><input class="inp" id="af1" type="text" placeholder="Digite sua rua"></div>
-    <div style="display:flex;gap:10px">
-      <div class="iw" style="flex:1"><label>Número *</label><input class="inp" id="af2" type="tel" placeholder="Nº"></div>
-      <div class="iw" style="flex:2"><label>Complemento</label><input class="inp" id="af3" type="text" placeholder="Apto"></div>
-    </div>
-    <div class="iw"><label>Bairro *</label><input class="inp" id="af4" type="text" placeholder="Bairro"></div>
-    <div style="display:flex;gap:10px">
-      <div class="iw" style="flex:2"><label>Cidade *</label><input class="inp" id="af5" type="text" placeholder="Cidade"></div>
-      <div class="iw" style="flex:1"><label>UF *</label><input class="inp" id="af6" type="text" placeholder="SP" maxlength="2"></div>
-    </div>
-    <div class="iw"><label>CEP</label><input class="inp" id="af7" type="tel" placeholder="00000-000" onblur="byCep(this.value)"></div>
-    <button class="btn bpk" onclick="createServiceRequest()">Confirmar e buscar profissional 🔍</button>
-    <div class="sb"></div>
-  </div>
-</div>
-
-<!-- MAPA BUSCA -->
-<div class="scr" id="s-search">
-  <div id="map1" style="position:absolute;inset:0;z-index:1"></div>
-  <div class="mtop">
-    <div class="gc">
-      <div class="pw"><div class="pr4"><div class="pd"></div></div><div><div style="font-weight:700" id="sst">Buscando profissional...</div><div style="font-size:13px;color:var(--g5)" id="ssb">Localizando próximas a você</div></div></div>
-      <div class="pr3"><div class="pf" id="sprog" style="width:0%"></div></div>
-    </div>
-  </div>
-  <div class="mbot"><button class="btn ber" onclick="cancelSearch()">Cancelar busca</button></div>
-</div>
-
-<!-- PRESTADOR ENCONTRADO -->
-<div class="scr" id="s-found">
-  <div id="map2" style="height:260px;flex-shrink:0"></div>
-  <div style="flex:1;background:#fff;border-radius:26px 26px 0 0;margin-top:-24px;position:relative;z-index:5;overflow-y:auto">
-    <div style="padding:20px 20px 0">
-      <div style="width:36px;height:4px;background:var(--g8);border-radius:2px;margin:0 auto 20px"></div>
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-        <div style="width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--pk2),var(--pk));display:flex;align-items:center;justify-content:center;font-size:32px">👩‍🔧</div>
-        <div style="flex:1"><div style="font-size:18px;font-weight:800" id="fn-name">Carregando...</div><div style="display:flex;gap:4px;margin-top:4px"><span style="color:#FFB800">★★★★★</span><span style="font-size:13px;color:var(--g5)" id="fn-rating">—</span></div><span class="bd2 bgk" style="margin-top:6px">✓ Verificada</span></div>
-        <button onclick="callProvider()" style="width:46px;height:46px;border-radius:50%;background:var(--pks);border:none;font-size:22px">📞</button>
-      </div>
-      <div style="display:flex;gap:10px;margin-bottom:16px">
-        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--pk)" id="fn-dist">—</div><div style="font-size:11px">Distância</div></div>
-        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800" id="fn-stars">—</div><div style="font-size:11px">Avaliação</div></div>
-        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--ok)" id="fn-svcs">—</div><div style="font-size:11px">Serviços</div></div>
-      </div>
-      <div style="display:flex;gap:10px;padding-bottom:24px">
-        <button class="btn bpk" style="flex:2" onclick="nav('s-prog')">Acompanhar ›</button>
-        <button class="btn bgh" style="flex:1;color:var(--er)" onclick="cancelRequest()">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- EM ANDAMENTO -->
-<div class="scr" id="s-prog">
-  <div class="tb"><div class="tt">Em andamento</div><div><div style="width:8px;height:8px;border-radius:50%;background:var(--ok);animation:blink 1s infinite"></div><span style="font-size:12px;color:var(--ok)">Ao vivo</span></div></div>
-  <div class="sc">
-    <div style="background:linear-gradient(155deg,var(--pk),#FF8FB3);margin:16px;border-radius:var(--rx);padding:22px;color:#fff">
-      <div style="font-size:13px;opacity:.85">Em andamento</div>
-      <div style="font-size:20px;font-weight:800;margin-bottom:10px" id="ipsvc">Serviço</div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:20px">👩‍🔧</div>
-        <div style="font-size:14px;font-weight:600" id="prog-name">Profissional</div>
-        <button onclick="callProvider()" style="margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;width:38px;height:38px;border-radius:50%;font-size:18px">📞</button>
-      </div>
-    </div>
-    <div style="padding:4px 20px 10px;font-size:16px;font-weight:800">Status</div>
-    <div class="tlw" id="tl"></div>
-  </div>
-</div>
-
-<!-- AVALIAÇÃO -->
-<div class="scr" id="s-rate">
-  <div class="sc">
-    <div style="text-align:center;padding:48px 32px 24px">
-      <div style="font-size:80px;margin-bottom:20px;animation:fl 2s ease-in-out infinite">🎉</div>
-      <h2 style="font-size:24px;font-weight:800;margin-bottom:6px">Serviço concluído!</h2>
-      <div style="font-size:46px;font-weight:800;color:var(--pk);margin:10px 0" id="fval">R$ 0</div>
-      <p style="font-size:15px;font-weight:700;margin-bottom:6px">Como foi a profissional?</p>
-      <div style="display:flex;gap:10px;justify-content:center;margin:18px 0" id="rstars">
-        <span class="rs2" onclick="setStars(1)">☆</span><span class="rs2" onclick="setStars(2)">☆</span>
-        <span class="rs2" onclick="setStars(3)">☆</span><span class="rs2" onclick="setStars(4)">☆</span>
-        <span class="rs2" onclick="setStars(5)">☆</span>
-      </div>
-      <div class="iw"><textarea class="inp" id="review-text" placeholder="Comentário (opcional)"></textarea></div>
-      <button class="btn bpk" onclick="submitRating()">Enviar avaliação 💖</button>
-      <button class="tlb" onclick="skipRating()">Pular</button>
-    </div>
-  </div>
-</div>
-
-<!-- PERFIL -->
+<!-- Perfil -->
 <div class="scr" id="s-profile">
-  <div class="tb"><button class="bk" onclick="nav('s-home')">‹</button><div class="tt">Meu perfil</div><div class="ph"></div></div>
-  <div class="sc">
-    <div style="background:linear-gradient(160deg,var(--pks),#fff);padding:36px 20px;text-align:center">
-      <div class="av" style="width:80px;height:80px;font-size:36px;margin:0 auto">💖</div>
-      <div style="font-size:20px;font-weight:800" id="pname">Minha Conta</div>
-      <div style="font-size:14px;color:var(--g5)" id="pemail">—</div>
+  <div class="tb"><button class="bk" onclick="nav('s-home')">‹</button><div class="tt">Perfil</div><div class="ph"></div></div>
+  <div class="sc" style="text-align: center;">
+    <div style="background: linear-gradient(160deg, var(--pks), #fff); padding: 36px 20px;">
+      <div class="av" style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--pk), var(--pk2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: #fff; margin: 0 auto 12px;">💖</div>
+      <div style="font-size: 20px; font-weight: 800;" id="pname">Minha Conta</div>
+      <div style="color: var(--g5);" id="pemail">—</div>
     </div>
-    <div style="margin:0 16px">
-      <div class="mrow" onclick="load2FAStatus()"><div class="mic">🔐</div><div style="flex:1">Autenticação 2FA</div><div>›</div></div>
-      <button class="btn bgh" style="margin-top:20px;color:var(--er)" onclick="doLogout()">Sair da conta</button>
+    <div style="margin: 16px;">
+      <div class="mrow" style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #fff; border-radius: 14px; margin-bottom: 3px; cursor: pointer;" onclick="load2FAStatus()"><div class="mic" style="width: 36px; height: 36px; background: var(--pks); border-radius: 10px; display: flex; align-items: center; justify-content: center;">🔐</div><div style="flex: 1; text-align: left;">Autenticação 2FA</div><div>›</div></div>
+      <button class="btn bgh" style="margin-top: 20px; color: var(--er);" onclick="doLogout()">Sair da conta</button>
     </div>
   </div>
 </div>
 
+<!-- 2FA -->
+<div class="scr" id="s-2fa">
+  <div class="tb"><button class="bk" onclick="nav('s-profile')">‹</button><div class="tt">2FA</div><div class="ph"></div></div>
+  <div class="sc" id="content-2fa" style="padding: 20px; text-align: center;"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+</div>
+
 <script>
-// ⚠️⚠️⚠️ COLOQUE SUA URL DO RENDER AQUI ⚠️
+// ============================================
+// ⚠️ COLOQUE A URL DO SEU BACKEND DO RENDER AQUI ⚠️
+// Exemplo: const API_URL = 'https://blim-backend.onrender.com';
+// ============================================
 const API_URL = 'https://blim4-0.onrender.com';
 
-// SPLASH - mostra 3 segundos
+// Splash - 3 segundos
 setTimeout(() => {
   const splash = document.getElementById('splash');
   splash.classList.add('hidden');
   setTimeout(() => splash.style.display = 'none', 500);
 }, 3000);
 
-// =============================================
+// ============================================
 let accessToken = localStorage.getItem('accessToken');
 let refreshToken = localStorage.getItem('refreshToken');
 let currentUser = null;
@@ -410,22 +585,20 @@ let selectedService = null;
 let selectedPrice = null;
 let selectedPayment = 'pix';
 let userLocation = null;
-let searchInterval = null;
-let statusInterval = null;
 let pending2FA = { required: false };
-let selectedRating = 0;
+let resetToken = null;
 
+// Categorias
 const CATS = [
-  {e:'🔧',n:'Encanamento',s:[{n:'Desentupimento',p:'150'},{n:'Conserto Torneira',p:'80'},{n:'Reparo Vazamento',p:'120'},{n:'Troca Chuveiro',p:'100'}]},
-  {e:'⚡',n:'Elétrica',s:[{n:'Troca Tomada',p:'80'},{n:'Troca Disjuntor',p:'100'},{n:'Instalação Lustre',p:'120'},{n:'Revisão Elétrica',p:'200'}]},
-  {e:'🏠',n:'Reforma',s:[{n:'Pintura',p:'300'},{n:'Revestimento',p:'400'},{n:'Gesso',p:'350'},{n:'Piso',p:'500'}]},
-  {e:'🧹',n:'Limpeza',s:[{n:'Residencial',p:'100'},{n:'Comercial',p:'200'},{n:'Pós-obra',p:'300'},{n:'Faxina',p:'150'}]},
-  {e:'❄️',n:'Ar-condicionado',s:[{n:'Instalação',p:'200'},{n:'Manutenção',p:'150'},{n:'Higienização',p:'180'},{n:'Recarga',p:'250'}]}
+  {e:'🔧',n:'Encanamento',s:[{n:'Desentupimento',p:'150'},{n:'Conserto Torneira',p:'80'},{n:'Reparo Vazamento',p:'120'}]},
+  {e:'⚡',n:'Elétrica',s:[{n:'Troca Tomada',p:'80'},{n:'Instalação Lustre',p:'120'},{n:'Revisão',p:'200'}]},
+  {e:'🏠',n:'Reforma',s:[{n:'Pintura',p:'300'},{n:'Revestimento',p:'400'},{n:'Gesso',p:'350'}]},
+  {e:'🧹',n:'Limpeza',s:[{n:'Residencial',p:'100'},{n:'Comercial',p:'200'},{n:'Pós-obra',p:'300'}]}
 ];
 
 function getDeviceId() {
   let id = localStorage.getItem('deviceId');
-  if (!id) { id = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8); localStorage.setItem('deviceId', id); }
+  if (!id) { id = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6); localStorage.setItem('deviceId', id); }
   return id;
 }
 
@@ -433,7 +606,6 @@ async function apiFetch(url, options = {}) {
   const headers = { 'Content-Type': 'application/json', 'X-Device-ID': getDeviceId() };
   if (accessToken) headers['Authorization'] = 'Bearer ' + accessToken;
   
-  console.log(`📡 Chamando: ${API_URL}${url}`);
   const res = await fetch(API_URL + url, { ...options, headers });
   
   if (res.status === 401 && refreshToken) {
@@ -458,7 +630,7 @@ function T(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('on');
-  setTimeout(() => t.classList.remove('on'), 2800);
+  setTimeout(() => t.classList.remove('on'), 3000);
 }
 
 let curScr = 's-splash';
@@ -467,21 +639,17 @@ function nav(id) {
   document.getElementById(id)?.classList.add('on');
   curScr = id;
   if (id === 's-home') { buildTabs(); buildGrid(); loadMyRequests(); }
-  if (id === 's-addr') { document.getElementById('gbar').style.display = 'flex'; }
-  if (id === 's-search') { initSearchMap(); startSearch(); }
-  if (id === 's-found') { initFoundMap(); }
   if (id === 's-requests') { loadMyRequests(); }
   if (id === 's-profile') { loadUserProfile(); }
 }
 
-// =============================================
-// CADASTRO
+// ========== CADASTRO ==========
 async function doRegister() {
   const name = document.getElementById('rn')?.value || '';
   const email = document.getElementById('re')?.value || '';
   const phone = document.getElementById('rphone')?.value || '';
   const cpf = document.getElementById('rcpf')?.value || '';
-  const password = document.getElementById('rw')?.value || '';
+  const password = document.getElementById('rpw')?.value || '';
   const terms = document.getElementById('rt')?.checked || false;
   
   if (!name.trim()) { T('Digite seu nome'); return; }
@@ -500,8 +668,7 @@ async function doRegister() {
   } catch(e) { T(e.message); }
 }
 
-// =============================================
-// LOGIN
+// ========== LOGIN ==========
 async function doLogin() {
   const email = document.getElementById('le')?.value || '';
   const password = document.getElementById('lp')?.value || '';
@@ -509,6 +676,8 @@ async function doLogin() {
   
   if (!email.trim()) { T('Digite seu e-mail'); return; }
   if (!password) { T('Digite sua senha'); return; }
+  
+  if (pending2FA.required && !code2fa) { T('Digite o código 2FA'); return; }
   
   try {
     T('Entrando...');
@@ -543,17 +712,15 @@ async function doLogout() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
   currentUser = null;
-  currentRequestId = null;
   nav('s-splash');
 }
 
 function updateUserUI() {
   if (currentUser) {
     const name = currentUser.name || 'Visitante';
-    document.getElementById('gname').textContent = name.split(' ')[0] + ' 💖';
-    document.getElementById('gav').textContent = name[0].toUpperCase();
-    document.getElementById('pname').textContent = name;
-    document.getElementById('pemail').textContent = currentUser.email || '';
+    document.getElementById('gname').innerHTML = name.split(' ')[0] + ' 💖';
+    document.getElementById('pname').innerHTML = name;
+    document.getElementById('pemail').innerHTML = currentUser.email || '';
   }
 }
 
@@ -566,10 +733,7 @@ async function loadUserProfile() {
   } catch(e) {}
 }
 
-// =============================================
-// RECUPERAR SENHA
-let resetToken = null;
-
+// ========== RECUPERAR SENHA ==========
 async function forgotPassword() {
   const email = document.getElementById('reset-email')?.value || '';
   if (!email.trim()) { T('Digite seu e-mail'); return; }
@@ -599,16 +763,15 @@ async function submitResetPassword() {
   } catch(e) { T(e.message); }
 }
 
-// =============================================
-// 2FA
+// ========== 2FA ==========
 async function load2FAStatus() {
   if (!accessToken) { T('Faça login primeiro'); return; }
   try {
     const user = await apiFetch('/api/auth/me');
     if (user.twoFactorEnabled) {
-      document.getElementById('content-2fa').innerHTML = `<div style="text-align:center"><div style="font-size:48px">🔐</div><h2>2FA Ativado</h2><button class="btn ber" onclick="disable2FA()">Desativar</button></div>`;
+      document.getElementById('content-2fa').innerHTML = '<div><div style="font-size:48px">🔐</div><h2>2FA Ativado</h2><button class="btn ber" onclick="disable2FA()">Desativar</button></div>';
     } else {
-      document.getElementById('content-2fa').innerHTML = `<div style="text-align:center"><div style="font-size:48px">🔓</div><h2>2FA Desativado</h2><button class="btn bpk" onclick="setup2FA()">Ativar</button></div>`;
+      document.getElementById('content-2fa').innerHTML = '<div><div style="font-size:48px">🔓</div><h2>2FA Desativado</h2><button class="btn bpk" onclick="setup2FA()">Ativar</button></div>';
     }
     nav('s-2fa');
   } catch(e) { T(e.message); }
@@ -617,9 +780,7 @@ async function load2FAStatus() {
 async function setup2FA() {
   try {
     const res = await apiFetch('/api/auth/setup-2fa', { method: 'POST' });
-    document.getElementById('content-2fa').innerHTML = `
-      <div style="text-align:center"><h2>Configurar 2FA</h2><p>Escaneie o QR Code</p><img src="${res.qrCode}" style="width:200px;margin:20px auto"><div class="iw"><input class="inp" id="2fa-code" placeholder="Código"></div><button class="btn bpk" onclick="enable2FA('${res.secret}')">Ativar</button></div>
-    `;
+    document.getElementById('content-2fa').innerHTML = '<div><h2>Configurar 2FA</h2><img src="' + res.qrCode + '" style="width:200px;margin:20px auto"><div class="iw"><input class="inp" id="2fa-code" placeholder="Código"></div><button class="btn bpk" onclick="enable2FA(\'' + res.secret + '\')">Ativar</button></div>';
   } catch(e) { T(e.message); }
 }
 
@@ -643,130 +804,28 @@ async function disable2FA() {
   } catch(e) { T(e.message); }
 }
 
-// =============================================
-// LOCALIZAÇÃO - SÓ PEDE PERMISSÃO QUANDO USA
-function getUserLocation() {
-  if (!navigator.geolocation) {
-    T('Seu navegador não suporta GPS');
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-      reverseGeocode(userLocation.lat, userLocation.lng);
-      T('📍 Localização obtida!');
-    },
-    err => {
-      if (err.code === 1) T('⚠️ Permita o acesso à localização nas configurações do navegador');
-      else if (err.code === 2) T('⚠️ Localização indisponível');
-      else T('⚠️ Erro ao obter localização');
-    },
-    { enableHighAccuracy: true, timeout: 10000 }
-  );
-}
-
-function reverseGeocode(lat, lng) {
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=pt-BR`)
-    .then(r => r.json())
-    .then(d => {
-      const a = d.address || {};
-      const loc = a.road || a.suburb || a.neighbourhood || 'Sua localização';
-      document.getElementById('loctxt').innerHTML = loc;
-    }).catch(() => {});
-}
-
-function startGPS() {
-  if (!navigator.geolocation) {
-    T('Navegador sem GPS');
-    return;
-  }
-  document.getElementById('gbar').style.display = 'flex';
-  document.getElementById('gtxt').innerHTML = 'Buscando localização...';
-  
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-      fillAddress(pos.coords.latitude, pos.coords.longitude);
-    },
-    err => {
-      if (err.code === 1) {
-        document.getElementById('gtxt').innerHTML = '⚠️ Permita acesso à localização';
-        T('Permita o acesso à localização para preencher endereço automaticamente');
-      } else {
-        document.getElementById('gtxt').innerHTML = '⚠️ Preencha manualmente';
-      }
-      document.getElementById('gspin').style.display = 'none';
-    },
-    { enableHighAccuracy: true, timeout: 15000 }
-  );
-}
-
-function fillAddress(lat, lng) {
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&addressdetails=1&lat=${lat}&lon=${lng}&accept-language=pt-BR`)
-    .then(r => r.json())
-    .then(d => {
-      const a = d.address || {};
-      document.getElementById('af1').value = a.road || '';
-      document.getElementById('af2').value = a.house_number || '';
-      document.getElementById('af4').value = a.suburb || a.neighbourhood || '';
-      document.getElementById('af5').value = a.city || a.town || '';
-      let uf = a.state_code || '';
-      document.getElementById('af6').value = uf.substring(0, 2).toUpperCase();
-      document.getElementById('gbar').style.display = 'none';
-      T('✓ Endereço detectado!');
-    })
-    .catch(() => {
-      document.getElementById('gbar').style.display = 'none';
-      T('Preencha o endereço manualmente');
-    });
-}
-
-function byCep(cep) {
-  const clean = cep.replace(/\D/g, '');
-  if (clean.length !== 8) return;
-  fetch(`https://viacep.com.br/ws/${clean}/json/`)
-    .then(r => r.json())
-    .then(d => {
-      if (d.erro) return;
-      document.getElementById('af1').value = d.logradouro || '';
-      document.getElementById('af4').value = d.bairro || '';
-      document.getElementById('af5').value = d.localidade || '';
-      document.getElementById('af6').value = d.uf || '';
-      T('✅ CEP preenchido');
-    }).catch(() => {});
-}
-
-// =============================================
-// CATEGORIAS
+// ========== CATEGORIAS ==========
 function buildTabs() {
   const el = document.getElementById('ctabs');
   if (!el) return;
-  el.innerHTML = ['Todos', 'Casa', 'Beleza', 'Tech'].map((t, i) => `<div class="ct${i === 0 ? ' on' : ''}" onclick="filterTab('${t}',this)">${t}</div>`).join('');
-}
-
-function filterTab(tab, el) {
-  document.querySelectorAll('.ct').forEach(t => t.classList.remove('on'));
-  el.classList.add('on');
-  buildGrid();
+  el.innerHTML = '<div class="ct on" style="padding:8px 16px;border-radius:999px;background:var(--pk);color:#fff;">Todos</div><div style="padding:8px 16px;border-radius:999px;background:#f2f2f7;">Casa</div><div style="padding:8px 16px;border-radius:999px;background:#f2f2f7;">Beleza</div>';
 }
 
 function buildGrid() {
   const el = document.getElementById('cgrid');
   if (!el) return;
-  el.innerHTML = CATS.map((c, i) => `<div class="cc" onclick="openCategory(${i})"><div style="font-size:30px">${c.e}</div><div style="font-size:11px;font-weight:700">${c.n}</div></div>`).join('');
+  el.innerHTML = CATS.map((c, i) => '<div class="cc" onclick="openCategory(' + i + ')"><div style="font-size:30px">' + c.e + '</div><div style="font-size:11px;font-weight:700">' + c.n + '</div></div>').join('');
 }
 
 function openCategory(idx) {
   selectedCategory = idx;
   const cat = CATS[idx];
-  document.getElementById('svct').textContent = cat.e + ' ' + cat.n;
-  document.getElementById('svcl').innerHTML = cat.s.map((s, j) => `
-    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:.5px solid #eee;cursor:pointer" onclick="selectService(${idx}, ${j})">
-      <div style="width:52px;height:52px;border-radius:14px;background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:26px">${cat.e}</div>
-      <div style="flex:1"><div style="font-weight:700">${s.n}</div><div style="font-size:13px;color:var(--g5)">R$ ${s.p}</div></div>
-      <div style="font-size:20px;color:var(--g7)">›</div>
-    </div>
-  `).join('');
+  document.getElementById('svct').innerHTML = cat.e + ' ' + cat.n;
+  let html = '';
+  for (let j = 0; j < cat.s.length; j++) {
+    html += '<div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:0.5px solid #eee;cursor:pointer" onclick="selectService(' + idx + ',' + j + ')"><div style="width:52px;height:52px;border-radius:14px;background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:26px">' + cat.e + '</div><div style="flex:1"><div style="font-weight:700">' + cat.s[j].n + '</div><div style="font-size:13px;color:var(--g5)">R$ ' + cat.s[j].p + '</div></div><div style="font-size:20px;color:var(--g7)">›</div></div>';
+  }
+  document.getElementById('svcl').innerHTML = html;
   nav('s-svcs');
 }
 
@@ -774,41 +833,13 @@ function selectService(catIdx, svcIdx) {
   selectedCategory = catIdx;
   selectedService = svcIdx;
   selectedPrice = CATS[catIdx].s[svcIdx].p;
-  document.getElementById('pprice').textContent = 'R$ ' + selectedPrice;
-  document.getElementById('psvc').textContent = CATS[catIdx].e + ' ' + CATS[catIdx].s[svcIdx].n;
-  document.getElementById('paybk').onclick = () => nav('s-svcs');
-  nav('s-pay');
+  T('Serviço selecionado: R$ ' + selectedPrice);
+  createServiceRequest();
 }
 
-function selPay(el, method) {
-  document.querySelectorAll('.pr').forEach(p => { p.classList.remove('on'); p.querySelector('.pck').textContent = ''; });
-  el.classList.add('on');
-  el.querySelector('.pck').textContent = '✓';
-  selectedPayment = method;
-}
-
-// =============================================
-// SOLICITAÇÃO
+// ========== CRIAR SOLICITAÇÃO ==========
 async function createServiceRequest() {
-  const street = document.getElementById('af1')?.value || '';
-  const number = document.getElementById('af2')?.value || '';
-  const complement = document.getElementById('af3')?.value || '';
-  const neighborhood = document.getElementById('af4')?.value || '';
-  const city = document.getElementById('af5')?.value || '';
-  const state = document.getElementById('af6')?.value || '';
-  
-  if (!street || !number || !neighborhood || !city || !state) {
-    T('Preencha todos os campos');
-    return;
-  }
-  
-  const fullAddress = `${street}, ${number}${complement ? ' ' + complement : ''}, ${neighborhood}, ${city}/${state}`;
-  
-  if (selectedCategory === null) {
-    T('Selecione um serviço');
-    nav('s-home');
-    return;
-  }
+  if (selectedCategory === null) { T('Selecione um serviço'); nav('s-home'); return; }
   
   const cat = CATS[selectedCategory];
   const svc = cat.s[selectedService];
@@ -821,126 +852,20 @@ async function createServiceRequest() {
         category: cat.n,
         title: svc.n,
         description: svc.n,
-        address: fullAddress,
-        latitude: userLocation?.lat || null,
-        longitude: userLocation?.lng || null,
+        address: 'Endereço de teste',
+        latitude: null,
+        longitude: null,
         value: 'R$ ' + svc.p,
-        paymentMethod: selectedPayment
+        paymentMethod: 'pix'
       })
     });
     currentRequestId = res.requestId;
-    T('Buscando profissional...');
-    nav('s-search');
-    startSearch();
+    T('Solicitação criada! ID: ' + currentRequestId);
+    loadMyRequests();
   } catch(e) { T(e.message); }
 }
 
-function startSearch() {
-  if (searchInterval) clearInterval(searchInterval);
-  
-  let step = 0;
-  const steps = ['Analisando...', 'Buscando...', 'Verificando...', 'Notificando...'];
-  const stepInterval = setInterval(() => {
-    if (step < steps.length) {
-      document.getElementById('sst').textContent = steps[step];
-      document.getElementById('sprog').style.width = ((step + 1) / steps.length * 100) + '%';
-      step++;
-    }
-  }, 1500);
-  
-  searchInterval = setInterval(async () => {
-    if (!currentRequestId) return;
-    try {
-      const requests = await apiFetch('/api/requests/my-requests');
-      const request = requests.find(r => r.id === currentRequestId);
-      if (request && request.providerId && request.status !== 'aguardando') {
-        clearInterval(searchInterval);
-        clearInterval(stepInterval);
-        T('Profissional encontrado!');
-        nav('s-found');
-        startStatusCheck();
-      }
-    } catch(e) {}
-  }, 5000);
-  
-  setTimeout(() => {
-    if (searchInterval) {
-      clearInterval(searchInterval);
-      clearInterval(stepInterval);
-      T('Nenhum profissional disponível');
-      nav('s-home');
-    }
-  }, 60000);
-}
-
-function cancelSearch() {
-  if (searchInterval) clearInterval(searchInterval);
-  nav('s-home');
-}
-
-function startStatusCheck() {
-  if (statusInterval) clearInterval(statusInterval);
-  statusInterval = setInterval(async () => {
-    if (!currentRequestId) return;
-    try {
-      const requests = await apiFetch('/api/requests/my-requests');
-      const request = requests.find(r => r.id === currentRequestId);
-      if (request && request.status === 'finalizado') {
-        clearInterval(statusInterval);
-        document.getElementById('fval').textContent = request.value;
-        nav('s-rate');
-      }
-      updateStatusTimeline(request?.status);
-    } catch(e) {}
-  }, 5000);
-}
-
-function updateStatusTimeline(status) {
-  const tl = document.getElementById('tl');
-  if (!tl) return;
-  const steps = [{ s:'aguardando', l:'Solicitação enviada' }, { s:'a_caminho', l:'Profissional a caminho' }, { s:'chegou', l:'Chegou ao local' }, { s:'iniciado', l:'Serviço iniciado' }, { s:'finalizado', l:'Serviço finalizado' }];
-  let current = steps.findIndex(s => s.s === status);
-  if (current === -1) current = 0;
-  tl.innerHTML = steps.map((step, i) => `
-    <div class="tli">
-      <div><div class="tld ${i <= current ? 'dk' : 'wt'}">${i <= current ? '✓' : i + 1}</div>${i < 4 ? '<div class="tll"></div>' : ''}</div>
-      <div><div style="font-weight:700">${step.l}</div></div>
-    </div>
-  `).join('');
-}
-
-function cancelRequest() {
-  if (currentRequestId) {
-    apiFetch('/api/requests/update-status', { method: 'POST', body: JSON.stringify({ requestId: currentRequestId, status: 'cancelado' }) }).catch(() => {});
-  }
-  nav('s-home');
-  T('Solicitação cancelada');
-}
-
-function callProvider() { T('📞 Ligando...'); }
-
-// =============================================
-// AVALIAÇÃO
-function setStars(n) {
-  selectedRating = n;
-  document.querySelectorAll('#rstars .rs2').forEach((s, i) => { s.textContent = i < n ? '★' : '☆'; });
-}
-
-async function submitRating() {
-  const review = document.getElementById('review-text')?.value || '';
-  if (!currentRequestId) { skipRating(); return; }
-  try {
-    await apiFetch('/api/requests/rate', { method: 'POST', body: JSON.stringify({ requestId: currentRequestId, rating: selectedRating || 5, review }) });
-    T('Obrigada!');
-  } catch(e) {}
-  currentRequestId = null;
-  nav('s-home');
-}
-
-function skipRating() { currentRequestId = null; nav('s-home'); }
-
-// =============================================
-// MEUS PEDIDOS
+// ========== MEUS PEDIDOS ==========
 async function loadMyRequests() {
   if (!accessToken) return;
   try {
@@ -948,57 +873,33 @@ async function loadMyRequests() {
     const container = document.getElementById('requests-list');
     if (!container) return;
     if (requests.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--g5)">Nenhum pedido</div>'; return; }
-    container.innerHTML = requests.map(r => `
-      <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)">
-        <div style="display:flex;justify-content:space-between"><span style="font-weight:800">${r.category}</span><span class="bd2 ${r.status === 'finalizado' ? 'bgk' : 'bpk2'}">${r.status}</span></div>
-        <div style="font-size:13px;color:var(--g5);margin:8px 0">${r.description}</div>
-        <div style="font-size:13px">📍 ${r.address}</div>
-        <div style="margin-top:8px;font-weight:700;color:var(--pk)">💰 ${r.value}</div>
-      </div>
-    `).join('');
+    let html = '';
+    for (let r of requests) {
+      html += '<div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid #eee"><div style="display:flex;justify-content:space-between"><span style="font-weight:800">' + (r.category || '') + '</span><span style="background:#E8F8EF;color:#34C759;padding:4px 10px;border-radius:999px;font-size:12px">' + (r.status || '') + '</span></div><div style="margin:8px 0">' + (r.description || '') + '</div><div>💰 ' + (r.value || '') + '</div></div>';
+    }
+    container.innerHTML = html;
+    if (curScr === 's-requests') nav('s-requests');
   } catch(e) { T(e.message); }
 }
 
-// =============================================
-// MAPAS
-let searchMap = null, foundMap = null;
-
-function initSearchMap() {
-  if (searchMap) { searchMap.invalidateSize(); return; }
-  if (typeof L === 'undefined') { setTimeout(initSearchMap, 200); return; }
-  const lat = userLocation?.lat || -23.5505;
-  const lng = userLocation?.lng || -46.6333;
-  searchMap = L.map('map1').setView([lat, lng], 15);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd' }).addTo(searchMap);
-  L.control.zoom({ position: 'topright' }).addTo(searchMap);
-  L.marker([lat, lng], { icon: L.divIcon({ html: '<div class="mk-me"></div>', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(searchMap);
-}
-
-function initFoundMap() {
-  if (foundMap) { foundMap.invalidateSize(); return; }
-  if (typeof L === 'undefined') { setTimeout(initFoundMap, 200); return; }
-  const lat = userLocation?.lat || -23.5505;
-  const lng = userLocation?.lng || -46.6333;
-  foundMap = L.map('map2').setView([lat, lng], 14);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd' }).addTo(foundMap);
-  L.control.zoom({ position: 'topright' }).addTo(foundMap);
-  L.marker([lat, lng], { icon: L.divIcon({ html: '<div class="mk-me"></div>', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(foundMap);
-}
-
-// =============================================
-// INICIALIZAÇÃO
+// ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', () => {
   buildTabs();
   buildGrid();
   
   if (accessToken) {
-    apiFetch('/api/auth/me').then(res => { if (res.id) { currentUser = res; updateUserUI(); nav('s-home'); } }).catch(() => {});
+    apiFetch('/api/auth/me').then(res => {
+      if (res.id) { currentUser = res; updateUserUI(); nav('s-home'); }
+    }).catch(() => {});
   }
   
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
   if (token) setResetToken(token);
 });
+
+// Placeholder functions
+function selPay() {}
 </script>
 </body>
 </html>
