@@ -34,73 +34,67 @@ body{font-family:var(--f);color:var(--dk);-webkit-font-smoothing:antialiased}
 @keyframes splashFadeIn{0%{opacity:0;transform:scale(0.9)}100%{opacity:1;transform:scale(1)}}
 @keyframes splashPulse{0%,100%{opacity:1}50%{opacity:0.7}}
 
-#app{max-width:430px;margin:0 auto;height:100vh;background:#fff;position:relative;overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select{-webkit-user-select:auto;user-select:auto}
+#app{max-width:430px;margin:0 auto;height:100vh;background:#fff;position:relative;overflow:hidden}
 .scr{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;transform:translateX(100%);transition:transform .38s cubic-bezier(.32,.72,0,1);z-index:1;overflow:hidden}
 .scr.on{transform:translateX(0);z-index:10}
 .sb{height:max(34px,env(safe-area-inset-bottom));flex-shrink:0}
-.btn{display:flex;align-items:center;justify-content:center;width:100%;padding:17px 24px;border:none;border-radius:var(--rf);font-family:var(--f);font-size:17px;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s;-webkit-appearance:none}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;padding:17px 24px;border:none;border-radius:var(--rf);font-family:var(--f);font-size:17px;font-weight:700;cursor:pointer;transition:transform .15s}
 .btn:active{transform:scale(.97)}
 .bpk{background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;box-shadow:0 6px 24px rgba(255,45,120,.38)}
 .bgh{background:var(--g10);color:var(--dk)}
-.ber{background:linear-gradient(135deg,var(--er),#FF6B6B);color:#fff;box-shadow:0 4px 16px rgba(255,59,48,.3)}
-.inp{width:100%;padding:15px 16px;background:var(--g10);border:1.5px solid transparent;border-radius:10px;font-family:var(--f);font-size:16px;color:var(--dk);outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
+.ber{background:linear-gradient(135deg,var(--er),#FF6B6B);color:#fff}
+.inp{width:100%;padding:15px 16px;background:var(--g10);border:1.5px solid transparent;border-radius:10px;font-family:var(--f);font-size:16px;color:var(--dk);outline:none}
 .inp:focus{background:#fff;border-color:var(--pk);box-shadow:0 0 0 4px rgba(255,45,120,.08)}
 .iw{margin-bottom:14px}
-.iw label{display:block;font-size:13px;font-weight:600;color:var(--g4);margin-bottom:6px;padding-left:2px}
-textarea.inp{resize:none;height:80px;line-height:1.5}
-.nb{height:60px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:.5px solid var(--g9);display:flex;flex-shrink:0;z-index:50}
+.iw label{display:block;font-size:13px;font-weight:600;color:var(--g4);margin-bottom:6px}
+textarea.inp{resize:none;height:80px}
+.nb{height:60px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-top:.5px solid var(--g9);display:flex;flex-shrink:0;z-index:50}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
-.ni .ic{font-size:23px;transition:transform .15s}
-.ni .lb{font-size:10px;font-weight:600;color:var(--g5);letter-spacing:.2px}
+.ni .ic{font-size:23px}
+.ni .lb{font-size:10px;font-weight:600;color:var(--g5)}
 .ni.on .lb{color:var(--pk)}
-.ni.on .ic{transform:scale(1.12)}
-.tb{padding:14px 20px 10px;display:flex;align-items:center;gap:12px;flex-shrink:0;background:#fff}
+.tb{padding:14px 20px 10px;display:flex;align-items:center;gap:12px;flex-shrink:0;background:#fff;border-bottom:.5px solid var(--g9)}
 .tt{flex:1;font-size:17px;font-weight:700;text-align:center}
 .bk{width:38px;height:38px;border-radius:var(--rf);background:var(--g10);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--pk);flex-shrink:0}
-.bk:active{background:var(--g9)}
 .ph{width:38px}
-.sc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.sc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .sc::-webkit-scrollbar{display:none}
 .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center;position:relative;overflow:hidden}
 .blob{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
 .lm{width:88px;height:88px;border-radius:30px;background:linear-gradient(135deg,var(--pk),#FF8FB3);display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:22px;box-shadow:0 10px 36px rgba(255,45,120,.32);animation:fl 3s ease-in-out infinite}
 @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.lt{font-size:52px;font-weight:800;letter-spacing:-3px;margin-bottom:6px;background:linear-gradient(135deg,var(--pk),#FF8FB3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lt{font-size:52px;font-weight:800;letter-spacing:-3px;margin-bottom:6px;background:linear-gradient(135deg,var(--pk),#FF8FB3);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .htop{background:#fff;flex-shrink:0}
 .gr{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px}
 .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--pk),var(--pk2));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;box-shadow:0 4px 14px rgba(255,45,120,.3);cursor:pointer}
 .lb2{display:flex;align-items:center;gap:8px;background:var(--pks);border-radius:10px;padding:11px 14px;margin:0 16px 12px;cursor:pointer}
 .cbar{background:#fff;border-bottom:.5px solid var(--g9);flex-shrink:0}
-.ctabs{display:flex;gap:7px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ctabs{display:flex;gap:7px;padding:12px 16px;overflow-x:auto}
 .ctabs::-webkit-scrollbar{display:none}
-.ct{padding:8px 16px;border-radius:var(--rf);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .2s;border:1.5px solid var(--g9);color:var(--g4);background:#fff;flex-shrink:0}
+.ct{padding:8px 16px;border-radius:var(--rf);font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;border:1.5px solid var(--g9);color:var(--g4);background:#fff;flex-shrink:0}
 .ct.on{background:var(--pk);color:#fff;border-color:var(--pk);box-shadow:0 4px 14px rgba(255,45,120,.32)}
 .cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
-.cc{background:#fff;border-radius:var(--r);padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:all .2s;border:1.5px solid transparent;box-shadow:var(--shb)}
+.cc{background:#fff;border-radius:var(--r);padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;border:1.5px solid transparent;box-shadow:var(--shb)}
 .cc:active{transform:scale(.94)}
-.cc:hover,.cc.on{border-color:var(--pk);box-shadow:var(--sh)}
-.ph2{background:linear-gradient(155deg,var(--pk),#FF8FB3);margin:16px;border-radius:var(--rx);padding:30px 24px;color:#fff;text-align:center;position:relative;overflow:hidden}
-.ph2::before{content:'';position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.1);top:-40px;right:-40px}
-.pr{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r);margin-bottom:9px;cursor:pointer;transition:all .18s;background:var(--g10);border:2px solid transparent}
+.cc.on{border-color:var(--pk);box-shadow:var(--sh)}
+.ph2{background:linear-gradient(155deg,var(--pk),#FF8FB3);margin:16px;border-radius:var(--rx);padding:30px 24px;color:#fff;text-align:center}
+.pr{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r);margin-bottom:9px;cursor:pointer;background:var(--g10);border:2px solid transparent}
 .pr.on{background:var(--pks);border-color:var(--pk)}
-.pck{width:24px;height:24px;border-radius:50%;border:2px solid var(--g7);margin-left:auto;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;color:#fff;transition:all .15s}
-.pr.on .pck{background:var(--pk);border-color:var(--pk)}
-.gbar{display:flex;align-items:center;gap:10px;border-radius:10px;padding:11px 14px;margin-bottom:16px;transition:all .3s;background:var(--pks)}
-.sp2{width:20px;height:20px;border:2.5px solid var(--pk2);border-top-color:var(--pk);border-radius:50%;animation:sp .8s linear infinite;flex-shrink:0}
+.pck{width:24px;height:24px;border-radius:50%;border:2px solid var(--g7);margin-left:auto;display:flex;align-items:center;justify-content:center;font-size:12px}
+.pr.on .pck{background:var(--pk);border-color:var(--pk);color:#fff}
+.gbar{display:flex;align-items:center;gap:10px;border-radius:10px;padding:11px 14px;margin-bottom:16px;background:var(--pks)}
+.sp2{width:20px;height:20px;border:2.5px solid var(--pk2);border-top-color:var(--pk);border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 #map1,#map2{position:absolute;inset:0;z-index:1}
 .leaflet-control-zoom{border:none!important;border-radius:14px!important;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.15)!important}
 .leaflet-control-zoom a{width:42px!important;height:42px!important;line-height:42px!important;font-size:20px!important;font-weight:800!important;color:var(--pk)!important;background:#fff!important;border:none!important}
-.leaflet-control-zoom a:hover{background:var(--pks)!important}
-.leaflet-control-zoom-in{border-bottom:.5px solid var(--g9)!important}
 .mtop{position:absolute;top:12px;left:12px;right:12px;z-index:400}
 .mbot{position:absolute;bottom:0;left:0;right:0;z-index:400;padding:14px 14px 36px}
-.gc{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--rx);padding:18px 20px;box-shadow:0 8px 40px rgba(0,0,0,.14)}
+.gc{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-radius:var(--rx);padding:18px 20px;box-shadow:0 8px 40px rgba(0,0,0,.14)}
 .pr3{height:3px;background:var(--g9);border-radius:2px;margin-top:12px;overflow:hidden}
 .pf{height:100%;background:linear-gradient(90deg,var(--pk),var(--pk2));border-radius:2px;transition:width .8s ease}
 .pw{display:flex;align-items:center;gap:12px}
-.pr4{width:40px;height:40px;border-radius:50%;background:var(--pks);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.pr4{width:40px;height:40px;border-radius:50%;background:var(--pks);display:flex;align-items:center;justify-content:center;position:relative}
 .pr4::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--pk);animation:pu 1.6s ease-out infinite}
 @keyframes pu{0%{transform:scale(1);opacity:.9}100%{transform:scale(2);opacity:0}}
 .pd{width:18px;height:18px;border-radius:50%;background:var(--pk)}
@@ -110,31 +104,25 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
 .tli{display:flex;gap:0}
 .tld{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;font-weight:700}
 .tld.dk{background:var(--pk);color:#fff}
-.tld.nw{background:#fff;border:2px solid var(--pk);color:var(--pk);animation:dp 1.2s ease-in-out infinite}
-@keyframes dp{0%,100%{box-shadow:0 0 0 0 rgba(255,45,120,.4)}50%{box-shadow:0 0 0 8px rgba(255,45,120,0)}}
 .tld.wt{background:var(--g9);color:var(--g5)}
 .tll{flex:none;width:2px;background:var(--g9);margin:2px 13px}
-.tll.dk{background:var(--pk)}
 .tlb{background:none;border:none;color:var(--pk);font-family:var(--f);font-size:15px;font-weight:600;cursor:pointer;padding:12px 0;width:100%;text-align:center}
 .div{display:flex;align-items:center;gap:12px;color:var(--g6);font-size:13px;margin:20px 0}
 .div::before,.div::after{content:'';flex:1;height:.5px;background:var(--g9)}
 .tbox{background:var(--g10);border-radius:var(--r);padding:14px;height:130px;overflow-y:auto;font-size:12px;line-height:1.75;color:var(--g4);margin-bottom:12px}
-.tbox::-webkit-scrollbar{display:none}
 .cr{display:flex;align-items:flex-start;gap:10px;margin-bottom:18px}
 .cr input[type=checkbox]{width:20px;height:20px;accent-color:var(--pk);flex-shrink:0;margin-top:2px}
 .cr span{font-size:13px;line-height:1.5;color:#48484A}
 .cr span strong{color:var(--pk)}
-.rs2{font-size:46px;cursor:pointer;transition:transform .15s cubic-bezier(.34,1.56,.64,1);line-height:1}
+.rs2{font-size:46px;cursor:pointer;transition:transform .15s;line-height:1}
 .rs2.on{transform:scale(1.15)}
 .bd2{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--rf);font-size:12px;font-weight:600}
 .bgk{background:#E8F8EF;color:var(--ok)}
 .bpk2{background:var(--pks);color:var(--pk)}
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(28,28,30,.92);backdrop-filter:blur(10px);color:#fff;padding:13px 22px;border-radius:var(--rf);font-size:14px;font-weight:600;z-index:9999;opacity:0;transition:all .32s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;max-width:88vw;text-align:center}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(28,28,30,.92);backdrop-filter:blur(10px);color:#fff;padding:13px 22px;border-radius:var(--rf);font-size:14px;font-weight:600;z-index:9999;opacity:0;transition:all .32s;pointer-events:none}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .mrow{display:flex;align-items:center;gap:12px;padding:15px 16px;background:#fff;border-radius:var(--r);margin-bottom:3px;cursor:pointer;box-shadow:var(--shb)}
-.mrow:active{background:var(--g10)}
-.mic{width:36px;height:36px;border-radius:10px;background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.mic{width:36px;height:36px;border-radius:10px;background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:17px}
 </style>
 </head>
 <body>
@@ -148,7 +136,7 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
 <div id="app">
 <div class="toast" id="toast"></div>
 
-<!-- SPLASH -->
+<!-- SPLASH / TELA INICIAL -->
 <div class="scr on" id="s-splash">
   <div class="hero">
     <div class="blob" style="width:280px;height:280px;background:rgba(255,45,120,.08);top:-60px;right:-80px"></div>
@@ -175,24 +163,12 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
   <div class="sc" style="padding:4px 24px 0">
     <h2 style="font-size:26px;font-weight:800;margin-bottom:4px">Seus dados</h2>
     <p style="font-size:14px;color:var(--g5);margin-bottom:22px">Preencha para criar sua conta grátis</p>
-    <div class="iw"><label>Nome completo</label><input class="inp" id="rn" type="text" placeholder="Seu nome completo" autocomplete="name"></div>
-    <div class="iw"><label>CPF</label><input class="inp" id="rcpf" type="tel" placeholder="000.000.000-00" inputmode="numeric"></div>
-    <div class="iw"><label>E-mail</label><input class="inp" id="re" type="email" placeholder="seu@email.com" autocomplete="email"></div>
-    <div class="iw"><label>Celular / WhatsApp</label><input class="inp" id="rphone" type="tel" placeholder="(00) 90000-0000"></div>
-    <div class="iw"><label>Senha</label><input class="inp" id="rw" type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password"></div>
-    <div style="margin-bottom:18px">
-      <label style="font-size:13px;font-weight:600;color:var(--g4);margin-bottom:8px;display:block">Termos de uso</label>
-      <div class="tbox">
-        <strong>TERMOS DE USO — BLIM</strong><br><br>
-        <strong>1. SOBRE A BLIM</strong><br>Plataforma que conecta clientes a profissionais verificados em 33 categorias.<br><br>
-        <strong>2. LOCALIZAÇÃO GPS</strong><br>Solicitamos acesso à sua localização para encontrar profissionais próximas. Seus dados de GPS só são compartilhados com a profissional após confirmação do serviço. Você pode escolher localização exata ou aproximada.<br><br>
-        <strong>3. DADOS E LGPD</strong><br>Tratamos seus dados conforme Lei nº 13.709/2018. Nunca vendemos suas informações.<br><br>
-        <strong>4. PAGAMENTOS</strong><br>Taxa de intermediação de 15% já incluída nos preços exibidos. Aceitamos PIX, cartão e dinheiro.<br><br>
-        <strong>5. CANCELAMENTOS</strong><br>Gratuito até 30 min antes. Após esse prazo, taxa de 20%.<br><br>
-        <strong>6. CONTATO</strong><br>suporte@blim.com.br
-      </div>
-      <div class="cr"><input type="checkbox" id="rt"><span>Li e aceito os <strong>Termos de Uso</strong> e a <strong>Política de Privacidade</strong> da BLIM</span></div>
-    </div>
+    <div class="iw"><label>Nome completo</label><input class="inp" id="rn" type="text" placeholder="Seu nome completo"></div>
+    <div class="iw"><label>CPF</label><input class="inp" id="rcpf" type="tel" placeholder="000.000.000-00"></div>
+    <div class="iw"><label>E-mail</label><input class="inp" id="re" type="email" placeholder="seu@email.com"></div>
+    <div class="iw"><label>Celular</label><input class="inp" id="rphone" type="tel" placeholder="(00) 90000-0000"></div>
+    <div class="iw"><label>Senha</label><input class="inp" id="rw" type="password" placeholder="Mínimo 8 caracteres"></div>
+    <div class="cr"><input type="checkbox" id="rt"><span>Li e aceito os <strong>Termos de Uso</strong> da BLIM</span></div>
     <button class="btn bpk" onclick="doRegister()">Criar conta grátis 💖</button>
     <div class="sb"></div>
   </div>
@@ -204,10 +180,10 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 24px">
     <h2 style="font-size:26px;font-weight:800;margin-bottom:4px">Bem-vinda de volta 💖</h2>
     <p style="font-size:14px;color:var(--g5);margin-bottom:28px">Entre na sua conta BLIM</p>
-    <div class="iw"><label>E-mail</label><input class="inp" id="le" type="email" placeholder="seu@email.com" autocomplete="username"></div>
-    <div class="iw"><label>Senha</label><input class="inp" id="lp" type="password" placeholder="••••••••" autocomplete="current-password"></div>
-    <div id="div-2fa" style="display:none" class="iw"><label>Código de verificação (2FA)</label><input class="inp" id="code2fa" type="text" placeholder="000000" autocomplete="off"></div>
-    <button class="tlb" style="text-align:right;padding:4px 0 20px" onclick="nav('s-forgot')">Esqueci minha senha</button>
+    <div class="iw"><label>E-mail</label><input class="inp" id="le" type="email" placeholder="seu@email.com"></div>
+    <div class="iw"><label>Senha</label><input class="inp" id="lp" type="password" placeholder="••••••••"></div>
+    <div id="div-2fa" style="display:none" class="iw"><label>Código 2FA</label><input class="inp" id="code2fa" type="text" placeholder="000000"></div>
+    <button class="tlb" onclick="nav('s-forgot')">Esqueci minha senha</button>
     <button class="btn bpk" onclick="doLogin()">Entrar</button>
     <div class="div">ou</div>
     <button class="btn bgh" onclick="nav('s-register')">Criar conta grátis</button>
@@ -231,14 +207,14 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
   <div class="tb"><button class="bk" onclick="nav('s-login')">‹</button><div class="tt">Nova senha</div><div class="ph"></div></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 24px">
     <div class="iw"><label>Nova senha</label><input class="inp" id="new-password" type="password" placeholder="Mínimo 8 caracteres"></div>
-    <div class="iw"><label>Confirmar senha</label><input class="inp" id="confirm-password" type="password" placeholder="Digite novamente"></div>
+    <div class="iw"><label>Confirmar</label><input class="inp" id="confirm-password" type="password" placeholder="Digite novamente"></div>
     <button class="btn bpk" onclick="submitResetPassword()">Redefinir senha</button>
   </div>
 </div>
 
 <!-- CONFIGURAR 2FA -->
 <div class="scr" id="s-2fa">
-  <div class="tb"><button class="bk" onclick="nav('s-profile')">‹</button><div class="tt">Autenticação 2FA</div><div class="ph"></div></div>
+  <div class="tb"><button class="bk" onclick="nav('s-profile')">‹</button><div class="tt">2FA</div><div class="ph"></div></div>
   <div class="sc" id="content-2fa" style="padding:20px;text-align:center"></div>
 </div>
 
@@ -246,12 +222,12 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
 <div class="scr" id="s-home" style="background:var(--g10)">
   <div class="htop">
     <div class="gr">
-      <div><div style="font-size:14px;color:var(--g5);font-weight:500">Olá,</div><div style="font-size:22px;font-weight:800;letter-spacing:-.3px" id="gname">Visitante 💖</div></div>
+      <div><div style="font-size:14px;color:var(--g5);font-weight:500">Olá,</div><div style="font-size:22px;font-weight:800" id="gname">Visitante 💖</div></div>
       <div class="av" id="gav" onclick="nav('s-profile')">B</div>
     </div>
     <div class="lb2" onclick="getUserLocation()">
       <span>📍</span>
-      <span id="loctxt" style="font-size:13px;font-weight:600;color:var(--pk);flex:1">Detectando localização...</span>
+      <span id="loctxt" style="font-size:13px;font-weight:600;color:var(--pk);flex:1">Toque para buscar localização</span>
       <span style="color:var(--pk2);font-size:11px">▾</span>
     </div>
     <div class="cbar"><div class="ctabs" id="ctabs"></div></div>
@@ -281,34 +257,17 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
   <div class="tb"><button class="bk" id="paybk">‹</button><div class="tt">Confirmar serviço</div><div class="ph"></div></div>
   <div class="sc">
     <div class="ph2">
-      <div style="font-size:12px;opacity:.85;font-weight:700;letter-spacing:.5px;margin-bottom:8px">VALOR</div>
-      <div style="font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1" id="pprice">R$ 0</div>
-      <div style="font-size:15px;opacity:.88;margin-top:4px;font-weight:600" id="psvc">Serviço</div>
+      <div style="font-size:12px;opacity:.85;margin-bottom:8px">VALOR</div>
+      <div style="font-size:52px;font-weight:800;letter-spacing:-2px" id="pprice">R$ 0</div>
+      <div style="font-size:15px;margin-top:4px" id="psvc">Serviço</div>
     </div>
     <div style="padding:4px 16px 8px;font-size:17px;font-weight:800">Forma de pagamento</div>
     <div style="padding:0 16px">
-      <div class="pr on" onclick="selPay(this,'pix')">
-        <div style="width:46px;height:46px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 2px 8px rgba(0,0,0,.08)">⚡</div>
-        <div><div style="font-size:15px;font-weight:700">PIX</div><div style="font-size:12px;color:var(--g5);margin-top:1px">Instantâneo</div></div>
-        <div class="pck">✓</div>
-      </div>
-      <div class="pr" onclick="selPay(this,'credit')">
-        <div style="width:46px;height:46px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 2px 8px rgba(0,0,0,.08)">💳</div>
-        <div><div style="font-size:15px;font-weight:700">Crédito</div><div style="font-size:12px;color:var(--g5);margin-top:1px">Até 12x sem juros</div></div>
-        <div class="pck"></div>
-      </div>
-      <div class="pr" onclick="selPay(this,'debit')">
-        <div style="width:46px;height:46px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 2px 8px rgba(0,0,0,.08)">🏦</div>
-        <div><div style="font-size:15px;font-weight:700">Débito</div><div style="font-size:12px;color:var(--g5);margin-top:1px">Débito imediato</div></div>
-        <div class="pck"></div>
-      </div>
-      <div class="pr" onclick="selPay(this,'cash')">
-        <div style="width:46px;height:46px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 2px 8px rgba(0,0,0,.08)">💵</div>
-        <div><div style="font-size:15px;font-weight:700">Dinheiro</div><div style="font-size:12px;color:var(--g5);margin-top:1px">Pague ao prestador</div></div>
-        <div class="pck"></div>
-      </div>
+      <div class="pr on" onclick="selPay(this,'pix')"><div>⚡</div><div><div style="font-weight:700">PIX</div><div style="font-size:12px;color:var(--g5)">Instantâneo</div></div><div class="pck">✓</div></div>
+      <div class="pr" onclick="selPay(this,'credit')"><div>💳</div><div><div style="font-weight:700">Crédito</div><div style="font-size:12px;color:var(--g5)">Até 12x</div></div><div class="pck"></div></div>
+      <div class="pr" onclick="selPay(this,'debit')"><div>🏦</div><div><div style="font-weight:700">Débito</div><div style="font-size:12px;color:var(--g5)">Débito imediato</div></div><div class="pck"></div></div>
+      <div class="pr" onclick="selPay(this,'cash')"><div>💵</div><div><div style="font-weight:700">Dinheiro</div><div style="font-size:12px;color:var(--g5)">Pague ao prestador</div></div><div class="pck"></div></div>
       <button class="btn bpk" onclick="nav('s-addr')">Continuar →</button>
-      <div class="sb"></div>
     </div>
   </div>
 </div>
@@ -319,22 +278,19 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
   <div class="sc" style="padding:16px 20px 0">
     <div id="gbar" class="gbar">
       <div id="gspin" class="sp2"></div>
-      <div id="gtxt" style="font-size:13px;font-weight:600;color:var(--pk)">Detectando sua localização...</div>
+      <div id="gtxt" style="font-size:13px;font-weight:600;color:var(--pk)">Toque para detectar localização</div>
     </div>
-    <div class="iw"><label>Rua / Avenida *</label><input class="inp" id="af1" type="text" placeholder="Aguardando GPS..."></div>
+    <div class="iw"><label>Rua *</label><input class="inp" id="af1" type="text" placeholder="Digite sua rua"></div>
     <div style="display:flex;gap:10px">
-      <div class="iw" style="flex:1"><label>Número *</label><input class="inp" id="af2" type="tel" placeholder="Nº" inputmode="numeric"></div>
-      <div class="iw" style="flex:2"><label>Complemento</label><input class="inp" id="af3" type="text" placeholder="Apto, bloco..."></div>
+      <div class="iw" style="flex:1"><label>Número *</label><input class="inp" id="af2" type="tel" placeholder="Nº"></div>
+      <div class="iw" style="flex:2"><label>Complemento</label><input class="inp" id="af3" type="text" placeholder="Apto"></div>
     </div>
-    <div class="iw"><label>Bairro *</label><input class="inp" id="af4" type="text" placeholder="Aguardando GPS..."></div>
+    <div class="iw"><label>Bairro *</label><input class="inp" id="af4" type="text" placeholder="Bairro"></div>
     <div style="display:flex;gap:10px">
-      <div class="iw" style="flex:2"><label>Cidade *</label><input class="inp" id="af5" type="text" placeholder="Aguardando GPS..."></div>
-      <div class="iw" style="flex:1"><label>UF *</label><input class="inp" id="af6" type="text" placeholder="SP" maxlength="2" style="text-transform:uppercase"></div>
+      <div class="iw" style="flex:2"><label>Cidade *</label><input class="inp" id="af5" type="text" placeholder="Cidade"></div>
+      <div class="iw" style="flex:1"><label>UF *</label><input class="inp" id="af6" type="text" placeholder="SP" maxlength="2"></div>
     </div>
-    <div class="iw">
-      <label>CEP</label>
-      <input class="inp" id="af7" type="tel" placeholder="00000-000" inputmode="numeric" onblur="byCep(this.value)">
-    </div>
+    <div class="iw"><label>CEP</label><input class="inp" id="af7" type="tel" placeholder="00000-000" onblur="byCep(this.value)"></div>
     <button class="btn bpk" onclick="createServiceRequest()">Confirmar e buscar profissional 🔍</button>
     <div class="sb"></div>
   </div>
@@ -345,19 +301,14 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
   <div id="map1" style="position:absolute;inset:0;z-index:1"></div>
   <div class="mtop">
     <div class="gc">
-      <div class="pw">
-        <div class="pr4"><div class="pd"></div></div>
-        <div><div style="font-size:16px;font-weight:700" id="sst">Buscando profissional...</div><div style="font-size:13px;color:var(--g5)" id="ssb">Localizando próximas a você</div></div>
-      </div>
+      <div class="pw"><div class="pr4"><div class="pd"></div></div><div><div style="font-weight:700" id="sst">Buscando profissional...</div><div style="font-size:13px;color:var(--g5)" id="ssb">Localizando próximas a você</div></div></div>
       <div class="pr3"><div class="pf" id="sprog" style="width:0%"></div></div>
     </div>
   </div>
-  <div class="mbot">
-    <button class="btn ber" onclick="cancelSearch()">Cancelar busca</button>
-  </div>
+  <div class="mbot"><button class="btn ber" onclick="cancelSearch()">Cancelar busca</button></div>
 </div>
 
-<!-- PRESTADOR ENCONTRADA -->
+<!-- PRESTADOR ENCONTRADO -->
 <div class="scr" id="s-found">
   <div id="map2" style="height:260px;flex-shrink:0"></div>
   <div style="flex:1;background:#fff;border-radius:26px 26px 0 0;margin-top:-24px;position:relative;z-index:5;overflow-y:auto">
@@ -365,17 +316,13 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
       <div style="width:36px;height:4px;background:var(--g8);border-radius:2px;margin:0 auto 20px"></div>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
         <div style="width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--pk2),var(--pk));display:flex;align-items:center;justify-content:center;font-size:32px">👩‍🔧</div>
-        <div style="flex:1">
-          <div style="font-size:18px;font-weight:800" id="fn-name">Carregando...</div>
-          <div style="display:flex;align-items:center;gap:4px;margin-top:4px"><span style="color:#FFB800;font-size:14px">★★★★★</span><span style="font-size:13px;color:var(--g5)" id="fn-rating">—</span></div>
-          <span class="bd2 bgk" style="margin-top:6px">✓ Verificada pela BLIM</span>
-        </div>
-        <button onclick="callProvider()" style="width:46px;height:46px;border-radius:50%;background:var(--pks);border:none;cursor:pointer;font-size:22px">📞</button>
+        <div style="flex:1"><div style="font-size:18px;font-weight:800" id="fn-name">Carregando...</div><div style="display:flex;gap:4px;margin-top:4px"><span style="color:#FFB800">★★★★★</span><span style="font-size:13px;color:var(--g5)" id="fn-rating">—</span></div><span class="bd2 bgk" style="margin-top:6px">✓ Verificada</span></div>
+        <button onclick="callProvider()" style="width:46px;height:46px;border-radius:50%;background:var(--pks);border:none;font-size:22px">📞</button>
       </div>
       <div style="display:flex;gap:10px;margin-bottom:16px">
-        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--pk)" id="fn-dist">—</div><div style="font-size:11px;color:var(--g5);font-weight:600">Distância</div></div>
-        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800" id="fn-stars">—</div><div style="font-size:11px;color:var(--g5);font-weight:600">Avaliação</div></div>
-        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--ok)" id="fn-svcs">—</div><div style="font-size:11px;color:var(--g5);font-weight:600">Serviços</div></div>
+        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--pk)" id="fn-dist">—</div><div style="font-size:11px">Distância</div></div>
+        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800" id="fn-stars">—</div><div style="font-size:11px">Avaliação</div></div>
+        <div style="flex:1;background:var(--g10);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--ok)" id="fn-svcs">—</div><div style="font-size:11px">Serviços</div></div>
       </div>
       <div style="display:flex;gap:10px;padding-bottom:24px">
         <button class="btn bpk" style="flex:2" onclick="nav('s-prog')">Acompanhar ›</button>
@@ -387,23 +334,19 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
 
 <!-- EM ANDAMENTO -->
 <div class="scr" id="s-prog">
-  <div class="tb">
-    <div class="tt">Em andamento</div>
-    <div style="display:flex;align-items:center;gap:5px;margin-left:auto"><div style="width:8px;height:8px;border-radius:50%;background:var(--ok);animation:blink 1s infinite"></div><span style="font-size:12px;color:var(--ok);font-weight:600">Ao vivo</span></div>
-  </div>
+  <div class="tb"><div class="tt">Em andamento</div><div><div style="width:8px;height:8px;border-radius:50%;background:var(--ok);animation:blink 1s infinite"></div><span style="font-size:12px;color:var(--ok)">Ao vivo</span></div></div>
   <div class="sc">
     <div style="background:linear-gradient(155deg,var(--pk),#FF8FB3);margin:16px;border-radius:var(--rx);padding:22px;color:#fff">
-      <div style="font-size:13px;opacity:.85;margin-bottom:4px">Em andamento</div>
+      <div style="font-size:13px;opacity:.85">Em andamento</div>
       <div style="font-size:20px;font-weight:800;margin-bottom:10px" id="ipsvc">Serviço</div>
       <div style="display:flex;align-items:center;gap:10px">
         <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:20px">👩‍🔧</div>
-        <div style="font-size:14px;font-weight:600" id="prog-name">Carregando...</div>
-        <button onclick="callProvider()" style="margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px">📞</button>
+        <div style="font-size:14px;font-weight:600" id="prog-name">Profissional</div>
+        <button onclick="callProvider()" style="margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;width:38px;height:38px;border-radius:50%;font-size:18px">📞</button>
       </div>
     </div>
     <div style="padding:4px 20px 10px;font-size:16px;font-weight:800">Status</div>
     <div class="tlw" id="tl"></div>
-    <div class="sb"></div>
   </div>
 </div>
 
@@ -413,19 +356,16 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
     <div style="text-align:center;padding:48px 32px 24px">
       <div style="font-size:80px;margin-bottom:20px;animation:fl 2s ease-in-out infinite">🎉</div>
       <h2 style="font-size:24px;font-weight:800;margin-bottom:6px">Serviço concluído!</h2>
-      <div style="font-size:46px;font-weight:800;color:var(--pk);letter-spacing:-2px;margin:10px 0" id="fval">R$ 0</div>
-      <p style="font-size:15px;font-weight:700;color:var(--dk);margin-top:16px;margin-bottom:6px">Como foi a profissional?</p>
+      <div style="font-size:46px;font-weight:800;color:var(--pk);margin:10px 0" id="fval">R$ 0</div>
+      <p style="font-size:15px;font-weight:700;margin-bottom:6px">Como foi a profissional?</p>
       <div style="display:flex;gap:10px;justify-content:center;margin:18px 0" id="rstars">
         <span class="rs2" onclick="setStars(1)">☆</span><span class="rs2" onclick="setStars(2)">☆</span>
         <span class="rs2" onclick="setStars(3)">☆</span><span class="rs2" onclick="setStars(4)">☆</span>
         <span class="rs2" onclick="setStars(5)">☆</span>
       </div>
-    </div>
-    <div style="padding:0 24px">
-      <div class="iw"><label>Comentário (opcional)</label><textarea class="inp" id="review-text" placeholder="Como foi a experiência?"></textarea></div>
-      <button class="btn bpk" onclick="submitRating()" style="margin-bottom:12px">Enviar avaliação 💖</button>
+      <div class="iw"><textarea class="inp" id="review-text" placeholder="Comentário (opcional)"></textarea></div>
+      <button class="btn bpk" onclick="submitRating()">Enviar avaliação 💖</button>
       <button class="tlb" onclick="skipRating()">Pular</button>
-      <div class="sb"></div>
     </div>
   </div>
 </div>
@@ -434,23 +374,15 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
 <div class="scr" id="s-profile">
   <div class="tb"><button class="bk" onclick="nav('s-home')">‹</button><div class="tt">Meu perfil</div><div class="ph"></div></div>
   <div class="sc">
-    <div style="background:linear-gradient(160deg,var(--pks),#fff 65%);padding:36px 20px 20px;text-align:center">
-      <div class="av" style="width:80px;height:80px;font-size:36px;margin:0 auto 12px">💖</div>
+    <div style="background:linear-gradient(160deg,var(--pks),#fff);padding:36px 20px;text-align:center">
+      <div class="av" style="width:80px;height:80px;font-size:36px;margin:0 auto">💖</div>
       <div style="font-size:20px;font-weight:800" id="pname">Minha Conta</div>
-      <div style="font-size:14px;color:var(--g5);margin-top:2px" id="pemail">—</div>
-      <span class="bd2 bgk" style="margin-top:8px">✓ Conta verificada</span>
+      <div style="font-size:14px;color:var(--g5)" id="pemail">—</div>
     </div>
-    <div style="margin:0 16px 8px">
-      <div class="mrow" onclick="load2FAStatus()">
-        <div class="mic">🔐</div>
-        <div style="flex:1;font-size:15px;font-weight:600">Autenticação de dois fatores (2FA)</div>
-        <div style="color:var(--g7);font-size:17px">›</div>
-      </div>
+    <div style="margin:0 16px">
+      <div class="mrow" onclick="load2FAStatus()"><div class="mic">🔐</div><div style="flex:1">Autenticação 2FA</div><div>›</div></div>
+      <button class="btn bgh" style="margin-top:20px;color:var(--er)" onclick="doLogout()">Sair da conta</button>
     </div>
-    <div style="padding:0 16px 8px">
-      <button class="btn bgh" style="color:var(--er)" onclick="doLogout()">Sair da conta</button>
-    </div>
-    <div class="sb"></div>
   </div>
 </div>
 
@@ -458,10 +390,11 @@ textarea.inp{resize:none;height:80px;line-height:1.5}
 
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 <script>
-// ⚠️ COLOQUE A URL DO SEU BACKEND AQUI ⚠️
-const API_URL = 'https://blim4-0.onrender.com';
+// ⚠️⚠️⚠️ COLOQUE SUA URL DO RENDER AQUI ⚠️⚠️⚠️
+// Exemplo: const API_URL = 'https://blim4-0.onrender.com';
+const API_URL = 'https://SUA_URL_AQUI.onrender.com';
 
-// SPLASH SCREEN - mostra por 3 segundos
+// SPLASH - mostra 3 segundos
 setTimeout(() => {
   const splash = document.getElementById('splash');
   splash.classList.add('hidden');
@@ -477,31 +410,23 @@ let selectedCategory = null;
 let selectedService = null;
 let selectedPrice = null;
 let selectedPayment = 'pix';
-let selectedAddress = null;
 let userLocation = null;
 let searchInterval = null;
 let statusInterval = null;
-let pending2FA = { required: false, userId: null };
-let currentProviderId = null;
+let pending2FA = { required: false };
 let selectedRating = 0;
 
-// CATEGORIAS COM PREÇO ÚNICO
 const CATS = [
-  {e:'🔧',n:'Encanamento',s:[{n:'Desentupimento',p:'R$ 150'},{n:'Conserto de Torneira',p:'R$ 80'},{n:'Reparo de Vazamento',p:'R$ 120'},{n:'Troca de Chuveiro',p:'R$ 100'}]},
-  {e:'⚡',n:'Elétrica',s:[{n:'Troca de Tomada',p:'R$ 80'},{n:'Troca de Disjuntor',p:'R$ 100'},{n:'Instalação de Lustre',p:'R$ 120'},{n:'Revisão Elétrica',p:'R$ 200'}]},
-  {e:'🏠',n:'Reforma',s:[{n:'Pintura de Parede',p:'R$ 300'},{n:'Revestimento',p:'R$ 400'},{n:'Instalação de Gesso',p:'R$ 350'},{n:'Troca de Piso',p:'R$ 500'}]},
-  {e:'🧹',n:'Limpeza',s:[{n:'Limpeza Residencial',p:'R$ 100'},{n:'Limpeza Comercial',p:'R$ 200'},{n:'Limpeza Pós-obra',p:'R$ 300'},{n:'Faxina Pesada',p:'R$ 150'}]},
-  {e:'❄️',n:'Ar-condicionado',s:[{n:'Instalação',p:'R$ 200'},{n:'Manutenção',p:'R$ 150'},{n:'Higienização',p:'R$ 180'},{n:'Recarga de Gás',p:'R$ 250'}]},
-  {e:'🌿',n:'Jardinagem',s:[{n:'Corte de Grama',p:'R$ 80'},{n:'Poda de Árvores',p:'R$ 150'},{n:'Paisagismo',p:'R$ 300'},{n:'Manutenção de Jardim',p:'R$ 200'}]},
-  {e:'🐾',n:'Pet',s:[{n:'Banho e Tosa',p:'R$ 50'},{n:'Passeio',p:'R$ 40'},{n:'Consulta Veterinária',p:'R$ 150'},{n:'Pet Sitting',p:'R$ 60'}]},
-  {e:'💻',n:'T nformatica',s:[{n:'Formatação',p:'R$ 100'},{n:'Configuração de Rede',p:'R$ 150'},{n:'Recuperação de Dados',p:'R$ 200'},{n:'Suporte Técnico',p:'R$ 80'}]},
-  {e:'🎨',n:'Design',s:[{n:'Design Gráfico',p:'R$ 100'},{n:'Arte Digital',p:'R$ 150'},{n:'Decoração de Ambientes',p:'R$ 200'},{n:'Fotografia',p:'R$ 200'}]},
-  {e:'📦',n:'Mudança',s:[{n:'Mudança Residencial',p:'R$ 400'},{n:'Mudança Comercial',p:'R$ 600'},{n:'Carreto',p:'R$ 150'},{n:'Montagem de Móveis',p:'R$ 100'}]}
+  {e:'🔧',n:'Encanamento',s:[{n:'Desentupimento',p:'150'},{n:'Conserto Torneira',p:'80'},{n:'Reparo Vazamento',p:'120'},{n:'Troca Chuveiro',p:'100'}]},
+  {e:'⚡',n:'Elétrica',s:[{n:'Troca Tomada',p:'80'},{n:'Troca Disjuntor',p:'100'},{n:'Instalação Lustre',p:'120'},{n:'Revisão Elétrica',p:'200'}]},
+  {e:'🏠',n:'Reforma',s:[{n:'Pintura',p:'300'},{n:'Revestimento',p:'400'},{n:'Gesso',p:'350'},{n:'Piso',p:'500'}]},
+  {e:'🧹',n:'Limpeza',s:[{n:'Residencial',p:'100'},{n:'Comercial',p:'200'},{n:'Pós-obra',p:'300'},{n:'Faxina',p:'150'}]},
+  {e:'❄️',n:'Ar-condicionado',s:[{n:'Instalação',p:'200'},{n:'Manutenção',p:'150'},{n:'Higienização',p:'180'},{n:'Recarga',p:'250'}]}
 ];
 
 function getDeviceId() {
   let id = localStorage.getItem('deviceId');
-  if (!id) { id = 'dev_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 8); localStorage.setItem('deviceId', id); }
+  if (!id) { id = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8); localStorage.setItem('deviceId', id); }
   return id;
 }
 
@@ -509,40 +434,32 @@ async function apiFetch(url, options = {}) {
   const headers = { 'Content-Type': 'application/json', 'X-Device-ID': getDeviceId() };
   if (accessToken) headers['Authorization'] = 'Bearer ' + accessToken;
   
-  let res = await fetch(API_URL + url, { ...options, headers });
+  console.log(`📡 Chamando: ${API_URL}${url}`);
+  const res = await fetch(API_URL + url, { ...options, headers });
   
   if (res.status === 401 && refreshToken) {
-    const refreshRes = await fetch(API_URL + '/api/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refreshToken }) });
-    if (refreshRes.ok) { 
-      const data = await refreshRes.json(); 
-      accessToken = data.accessToken; 
-      refreshToken = data.refreshToken; 
-      localStorage.setItem('accessToken', accessToken); 
-      localStorage.setItem('refreshToken', refreshToken); 
-      headers['Authorization'] = 'Bearer ' + accessToken; 
-      res = await fetch(API_URL + url, { ...options, headers }); 
-    } else { 
-      localStorage.removeItem('accessToken'); 
-      localStorage.removeItem('refreshToken'); 
-      accessToken = null; 
-      refreshToken = null; 
-      nav('s-splash'); 
-      throw new Error('Sessão expirada'); 
+    const refreshRes = await fetch(API_URL + '/api/auth/refresh', { method: 'POST', body: JSON.stringify({ refreshToken }) });
+    if (refreshRes.ok) {
+      const data = await refreshRes.json();
+      accessToken = data.accessToken;
+      localStorage.setItem('accessToken', accessToken);
+      headers['Authorization'] = 'Bearer ' + accessToken;
+      return fetch(API_URL + url, { ...options, headers });
     }
   }
   
-  if (!res.ok) { 
-    const err = await res.json().catch(() => ({})); 
-    throw new Error(err.error || 'Erro na requisição'); 
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || 'Erro na requisição');
   }
   return res.json();
 }
 
-function T(msg) { 
-  const t = document.getElementById('toast'); 
-  t.textContent = msg; 
-  t.classList.add('on'); 
-  setTimeout(() => t.classList.remove('on'), 2800); 
+function T(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 2800);
 }
 
 let curScr = 's-splash';
@@ -550,17 +467,16 @@ function nav(id) {
   document.getElementById(curScr)?.classList.remove('on');
   document.getElementById(id)?.classList.add('on');
   curScr = id;
-  if (id === 's-home') { buildTabs(); buildGrid(); getUserLocation(); loadMyRequests(); }
-  if (id === 's-addr') { startGPS(); }
-  if (id === 's-search') { initSearchMap(); startSearchPolling(); }
+  if (id === 's-home') { buildTabs(); buildGrid(); loadMyRequests(); }
+  if (id === 's-addr') { document.getElementById('gbar').style.display = 'flex'; }
+  if (id === 's-search') { initSearchMap(); startSearch(); }
   if (id === 's-found') { initFoundMap(); }
   if (id === 's-requests') { loadMyRequests(); }
   if (id === 's-profile') { loadUserProfile(); }
 }
 
 // =============================================
-// CADASTRO (usando /api/auth/register-cliente)
-// =============================================
+// CADASTRO
 async function doRegister() {
   const name = document.getElementById('rn')?.value || '';
   const email = document.getElementById('re')?.value || '';
@@ -576,9 +492,9 @@ async function doRegister() {
   
   try {
     T('Cadastrando...');
-    const res = await apiFetch('/api/auth/register-cliente', { 
-      method: 'POST', 
-      body: JSON.stringify({ name, email, phone, cpf, password }) 
+    await apiFetch('/api/auth/register-cliente', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, phone, cpf, password })
     });
     T('Conta criada! Faça login.');
     nav('s-login');
@@ -586,8 +502,7 @@ async function doRegister() {
 }
 
 // =============================================
-// LOGIN (com suporte a 2FA)
-// =============================================
+// LOGIN
 async function doLogin() {
   const email = document.getElementById('le')?.value || '';
   const password = document.getElementById('lp')?.value || '';
@@ -596,20 +511,15 @@ async function doLogin() {
   if (!email.trim()) { T('Digite seu e-mail'); return; }
   if (!password) { T('Digite sua senha'); return; }
   
-  if (pending2FA.required && !code2fa) {
-    T('Digite o código de autenticação de dois fatores');
-    return;
-  }
-  
   try {
     T('Entrando...');
-    const res = await apiFetch('/api/auth/login', { 
-      method: 'POST', 
-      body: JSON.stringify({ email, password, deviceId: getDeviceId(), code2fa }) 
+    const res = await apiFetch('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, deviceId: getDeviceId(), code2fa })
     });
     
     if (res.requiresCode) {
-      pending2FA = { required: true, userId: res.userId };
+      pending2FA = { required: true };
       document.getElementById('div-2fa').style.display = 'block';
       T('Código 2FA necessário');
       return;
@@ -621,9 +531,6 @@ async function doLogin() {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       currentUser = res.user;
-      pending2FA = { required: false, userId: null };
-      document.getElementById('div-2fa').style.display = 'none';
-      document.getElementById('code2fa').value = '';
       updateUserUI();
       T('Bem-vinda!');
       nav('s-home');
@@ -634,7 +541,6 @@ async function doLogin() {
 async function doLogout() {
   try { if (accessToken) await apiFetch('/api/auth/logout', { method: 'POST' }); } catch(e) {}
   accessToken = null;
-  refreshToken = null;
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
   currentUser = null;
@@ -662,16 +568,15 @@ async function loadUserProfile() {
 }
 
 // =============================================
-// RECUPERAÇÃO DE SENHA
-// =============================================
+// RECUPERAR SENHA
 let resetToken = null;
 
 async function forgotPassword() {
   const email = document.getElementById('reset-email')?.value || '';
   if (!email.trim()) { T('Digite seu e-mail'); return; }
   try {
-    const res = await apiFetch('/api/password/forgot', { method: 'POST', body: JSON.stringify({ email }) });
-    T(res.message || 'Link enviado! Verifique seu e-mail.');
+    await apiFetch('/api/password/forgot', { method: 'POST', body: JSON.stringify({ email }) });
+    T('Link enviado! Verifique seu e-mail.');
     nav('s-login');
   } catch(e) { T(e.message); }
 }
@@ -688,7 +593,7 @@ async function submitResetPassword() {
   if (newPassword !== confirmPassword) { T('As senhas não coincidem'); return; }
   if (!resetToken) { T('Token inválido'); return; }
   try {
-    const res = await apiFetch('/api/password/reset', { method: 'POST', body: JSON.stringify({ token: resetToken, password: newPassword }) });
+    await apiFetch('/api/password/reset', { method: 'POST', body: JSON.stringify({ token: resetToken, password: newPassword }) });
     T('Senha alterada! Faça login.');
     resetToken = null;
     nav('s-login');
@@ -697,27 +602,14 @@ async function submitResetPassword() {
 
 // =============================================
 // 2FA
-// =============================================
 async function load2FAStatus() {
   if (!accessToken) { T('Faça login primeiro'); return; }
   try {
     const user = await apiFetch('/api/auth/me');
     if (user.twoFactorEnabled) {
-      document.getElementById('content-2fa').innerHTML = `
-        <div style="text-align:center;padding:20px">
-          <div style="font-size:48px;margin-bottom:20px">🔐</div>
-          <h2>2FA Ativado</h2>
-          <button class="btn ber" onclick="disable2FA()">Desativar 2FA</button>
-        </div>
-      `;
+      document.getElementById('content-2fa').innerHTML = `<div style="text-align:center"><div style="font-size:48px">🔐</div><h2>2FA Ativado</h2><button class="btn ber" onclick="disable2FA()">Desativar</button></div>`;
     } else {
-      document.getElementById('content-2fa').innerHTML = `
-        <div style="text-align:center;padding:20px">
-          <div style="font-size:48px;margin-bottom:20px">🔓</div>
-          <h2>2FA Desativado</h2>
-          <button class="btn bpk" onclick="setup2FA()">Ativar 2FA</button>
-        </div>
-      `;
+      document.getElementById('content-2fa').innerHTML = `<div style="text-align:center"><div style="font-size:48px">🔓</div><h2>2FA Desativado</h2><button class="btn bpk" onclick="setup2FA()">Ativar</button></div>`;
     }
     nav('s-2fa');
   } catch(e) { T(e.message); }
@@ -727,23 +619,16 @@ async function setup2FA() {
   try {
     const res = await apiFetch('/api/auth/setup-2fa', { method: 'POST' });
     document.getElementById('content-2fa').innerHTML = `
-      <div style="text-align:center;padding:20px">
-        <h2>Configurar 2FA</h2>
-        <p>Escaneie o QR Code com Google Authenticator</p>
-        <img src="${res.qrCode}" style="width:200px;margin:20px auto;display:block">
-        <p style="font-size:12px;color:var(--g5)">Secret: ${res.secret}</p>
-        <div class="iw"><input class="inp" id="2fa-code" placeholder="Código de verificação"></div>
-        <button class="btn bpk" onclick="enable2FA('${res.secret}', ${JSON.stringify(res.backupCodes)})">Ativar 2FA</button>
-      </div>
+      <div style="text-align:center"><h2>Configurar 2FA</h2><p>Escaneie o QR Code</p><img src="${res.qrCode}" style="width:200px;margin:20px auto"><div class="iw"><input class="inp" id="2fa-code" placeholder="Código"></div><button class="btn bpk" onclick="enable2FA('${res.secret}')">Ativar</button></div>
     `;
   } catch(e) { T(e.message); }
 }
 
-async function enable2FA(secret, backupCodes) {
+async function enable2FA(secret) {
   const code = document.getElementById('2fa-code')?.value || '';
   if (!code) { T('Digite o código'); return; }
   try {
-    await apiFetch('/api/auth/enable-2fa', { method: 'POST', body: JSON.stringify({ secret, code, backupCodes }) });
+    await apiFetch('/api/auth/enable-2fa', { method: 'POST', body: JSON.stringify({ secret, code }) });
     T('2FA ativado!');
     load2FAStatus();
   } catch(e) { T(e.message); }
@@ -760,13 +645,104 @@ async function disable2FA() {
 }
 
 // =============================================
-// CATEGORIAS E SERVIÇOS
+// LOCALIZAÇÃO - SÓ PEDE PERMISSÃO QUANDO USA
+function getUserLocation() {
+  if (!navigator.geolocation) {
+    T('Seu navegador não suporta GPS');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      reverseGeocode(userLocation.lat, userLocation.lng);
+      T('📍 Localização obtida!');
+    },
+    err => {
+      if (err.code === 1) T('⚠️ Permita o acesso à localização nas configurações do navegador');
+      else if (err.code === 2) T('⚠️ Localização indisponível');
+      else T('⚠️ Erro ao obter localização');
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function reverseGeocode(lat, lng) {
+  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=pt-BR`)
+    .then(r => r.json())
+    .then(d => {
+      const a = d.address || {};
+      const loc = a.road || a.suburb || a.neighbourhood || 'Sua localização';
+      document.getElementById('loctxt').innerHTML = loc;
+    }).catch(() => {});
+}
+
+function startGPS() {
+  if (!navigator.geolocation) {
+    T('Navegador sem GPS');
+    return;
+  }
+  document.getElementById('gbar').style.display = 'flex';
+  document.getElementById('gtxt').innerHTML = 'Buscando localização...';
+  
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      fillAddress(pos.coords.latitude, pos.coords.longitude);
+    },
+    err => {
+      if (err.code === 1) {
+        document.getElementById('gtxt').innerHTML = '⚠️ Permita acesso à localização';
+        T('Permita o acesso à localização para preencher endereço automaticamente');
+      } else {
+        document.getElementById('gtxt').innerHTML = '⚠️ Preencha manualmente';
+      }
+      document.getElementById('gspin').style.display = 'none';
+    },
+    { enableHighAccuracy: true, timeout: 15000 }
+  );
+}
+
+function fillAddress(lat, lng) {
+  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&addressdetails=1&lat=${lat}&lon=${lng}&accept-language=pt-BR`)
+    .then(r => r.json())
+    .then(d => {
+      const a = d.address || {};
+      document.getElementById('af1').value = a.road || '';
+      document.getElementById('af2').value = a.house_number || '';
+      document.getElementById('af4').value = a.suburb || a.neighbourhood || '';
+      document.getElementById('af5').value = a.city || a.town || '';
+      let uf = a.state_code || '';
+      document.getElementById('af6').value = uf.substring(0, 2).toUpperCase();
+      document.getElementById('gbar').style.display = 'none';
+      T('✓ Endereço detectado!');
+    })
+    .catch(() => {
+      document.getElementById('gbar').style.display = 'none';
+      T('Preencha o endereço manualmente');
+    });
+}
+
+function byCep(cep) {
+  const clean = cep.replace(/\D/g, '');
+  if (clean.length !== 8) return;
+  fetch(`https://viacep.com.br/ws/${clean}/json/`)
+    .then(r => r.json())
+    .then(d => {
+      if (d.erro) return;
+      document.getElementById('af1').value = d.logradouro || '';
+      document.getElementById('af4').value = d.bairro || '';
+      document.getElementById('af5').value = d.localidade || '';
+      document.getElementById('af6').value = d.uf || '';
+      T('✅ CEP preenchido');
+    }).catch(() => {});
+}
+
 // =============================================
+// CATEGORIAS
 function buildTabs() {
   const el = document.getElementById('ctabs');
   if (!el) return;
-  const tabs = ['Todos', 'Casa', 'Beleza', 'Tech', 'Saúde'];
-  el.innerHTML = tabs.map((t, i) => `<div class="ct${i === 0 ? ' on' : ''}" onclick="filterTab('${t}',this)">${t}</div>`).join('');
+  el.innerHTML = ['Todos', 'Casa', 'Beleza', 'Tech'].map((t, i) => `<div class="ct${i === 0 ? ' on' : ''}" onclick="filterTab('${t}',this)">${t}</div>`).join('');
 }
 
 function filterTab(tab, el) {
@@ -778,12 +754,7 @@ function filterTab(tab, el) {
 function buildGrid() {
   const el = document.getElementById('cgrid');
   if (!el) return;
-  el.innerHTML = CATS.map((c, i) => `
-    <div class="cc" onclick="openCategory(${i})">
-      <div style="font-size:30px">${c.e}</div>
-      <div style="font-size:11px;font-weight:700;text-align:center">${c.n}</div>
-    </div>
-  `).join('');
+  el.innerHTML = CATS.map((c, i) => `<div class="cc" onclick="openCategory(${i})"><div style="font-size:30px">${c.e}</div><div style="font-size:11px;font-weight:700">${c.n}</div></div>`).join('');
 }
 
 function openCategory(idx) {
@@ -791,12 +762,9 @@ function openCategory(idx) {
   const cat = CATS[idx];
   document.getElementById('svct').textContent = cat.e + ' ' + cat.n;
   document.getElementById('svcl').innerHTML = cat.s.map((s, j) => `
-    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:.5px solid var(--g10);cursor:pointer" onclick="selectService(${idx}, ${j})">
-      <div style="width:52px;height:52px;border-radius:var(--r);background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:26px">${cat.e}</div>
-      <div style="flex:1">
-        <div style="font-size:16px;font-weight:700">${s.n}</div>
-        <div style="font-size:13px;color:var(--g5);margin-top:2px">${s.p}</div>
-      </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:.5px solid #eee;cursor:pointer" onclick="selectService(${idx}, ${j})">
+      <div style="width:52px;height:52px;border-radius:14px;background:var(--pks);display:flex;align-items:center;justify-content:center;font-size:26px">${cat.e}</div>
+      <div style="flex:1"><div style="font-weight:700">${s.n}</div><div style="font-size:13px;color:var(--g5)">R$ ${s.p}</div></div>
       <div style="font-size:20px;color:var(--g7)">›</div>
     </div>
   `).join('');
@@ -807,7 +775,7 @@ function selectService(catIdx, svcIdx) {
   selectedCategory = catIdx;
   selectedService = svcIdx;
   selectedPrice = CATS[catIdx].s[svcIdx].p;
-  document.getElementById('pprice').textContent = selectedPrice;
+  document.getElementById('pprice').textContent = 'R$ ' + selectedPrice;
   document.getElementById('psvc').textContent = CATS[catIdx].e + ' ' + CATS[catIdx].s[svcIdx].n;
   document.getElementById('paybk').onclick = () => nav('s-svcs');
   nav('s-pay');
@@ -821,77 +789,7 @@ function selPay(el, method) {
 }
 
 // =============================================
-// LOCALIZAÇÃO E ENDEREÇO
-// =============================================
-function getUserLocation() {
-  if (!navigator.geolocation) return;
-  navigator.geolocation.getCurrentPosition(pos => {
-    userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-    reverseGeocode(userLocation.lat, userLocation.lng);
-  }, () => {}, { enableHighAccuracy: true, timeout: 10000 });
-}
-
-function reverseGeocode(lat, lng) {
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=pt-BR`)
-    .then(r => r.json())
-    .then(d => {
-      const a = d.address || {};
-      const loc = a.road || a.suburb || a.neighbourhood || 'Sua localização';
-      document.getElementById('loctxt').textContent = loc;
-    })
-    .catch(() => {});
-}
-
-function startGPS() {
-  ['af1', 'af2', 'af3', 'af4', 'af5', 'af6', 'af7'].forEach(id => { 
-    const el = document.getElementById(id); 
-    if (el) el.value = ''; 
-  });
-  
-  if (!navigator.geolocation) return;
-  navigator.geolocation.getCurrentPosition(pos => {
-    userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-    fillAddressFromCoords(userLocation.lat, userLocation.lng);
-  }, () => {}, { enableHighAccuracy: true, timeout: 20000 });
-}
-
-function fillAddressFromCoords(lat, lng) {
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&addressdetails=1&lat=${lat}&lon=${lng}&accept-language=pt-BR`)
-    .then(r => r.json())
-    .then(d => {
-      const a = d.address || {};
-      document.getElementById('af1').value = a.road || a.pedestrian || '';
-      document.getElementById('af2').value = a.house_number || '';
-      document.getElementById('af4').value = a.suburb || a.neighbourhood || '';
-      document.getElementById('af5').value = a.city || a.town || '';
-      let uf = a['ISO3166-2-lvl4'] || a.state_code || '';
-      if (uf.includes('-')) uf = uf.split('-').pop();
-      document.getElementById('af6').value = uf.substring(0, 2).toUpperCase();
-      if (a.postcode) document.getElementById('af7').value = a.postcode;
-      T('✓ Endereço detectado');
-    })
-    .catch(() => T('⚠️ Preencha o endereço manualmente'));
-}
-
-function byCep(cep) {
-  const cleanCep = cep.replace(/\D/g, '');
-  if (cleanCep.length !== 8) return;
-  fetch(`https://viacep.com.br/ws/${cleanCep}/json/`)
-    .then(r => r.json())
-    .then(d => {
-      if (d.erro) return;
-      document.getElementById('af1').value = d.logradouro || '';
-      document.getElementById('af4').value = d.bairro || '';
-      document.getElementById('af5').value = d.localidade || '';
-      document.getElementById('af6').value = d.uf || '';
-      T('✅ CEP preenchido');
-    })
-    .catch(() => {});
-}
-
-// =============================================
-// CRIAÇÃO DE SOLICITAÇÃO (usando /api/requests/create)
-// =============================================
+// SOLICITAÇÃO
 async function createServiceRequest() {
   const street = document.getElementById('af1')?.value || '';
   const number = document.getElementById('af2')?.value || '';
@@ -901,14 +799,14 @@ async function createServiceRequest() {
   const state = document.getElementById('af6')?.value || '';
   
   if (!street || !number || !neighborhood || !city || !state) {
-    T('Preencha todos os campos obrigatórios');
+    T('Preencha todos os campos');
     return;
   }
   
   const fullAddress = `${street}, ${number}${complement ? ' ' + complement : ''}, ${neighborhood}, ${city}/${state}`;
   
-  if (selectedCategory === null || selectedService === null) {
-    T('Selecione um serviço primeiro');
+  if (selectedCategory === null) {
+    T('Selecione um serviço');
     nav('s-home');
     return;
   }
@@ -927,60 +825,41 @@ async function createServiceRequest() {
         address: fullAddress,
         latitude: userLocation?.lat || null,
         longitude: userLocation?.lng || null,
-        value: svc.p,
+        value: 'R$ ' + svc.p,
         paymentMethod: selectedPayment
       })
     });
-    
     currentRequestId = res.requestId;
-    T('Solicitação criada! Buscando profissional...');
+    T('Buscando profissional...');
     nav('s-search');
-    startSearchPolling();
+    startSearch();
   } catch(e) { T(e.message); }
 }
 
-// =============================================
-// BUSCA DE PRESTADOR (polling)
-// =============================================
-function startSearchPolling() {
+function startSearch() {
   if (searchInterval) clearInterval(searchInterval);
   
-  let progress = 0;
-  const prog = document.getElementById('sprog');
-  const st = document.getElementById('sst');
-  const sb = document.getElementById('ssb');
-  
-  const phases = [
-    'Analisando sua solicitação...',
-    'Buscando profissionais disponíveis...',
-    'Verificando disponibilidade...',
-    'Notificando profissional...',
-    'Aguardando confirmação...'
-  ];
-  
-  let phaseIdx = 0;
-  const phaseInterval = setInterval(() => {
-    if (phaseIdx < phases.length) {
-      st.textContent = phases[phaseIdx];
-      progress = (phaseIdx + 1) / phases.length * 100;
-      prog.style.width = progress + '%';
-      phaseIdx++;
+  let step = 0;
+  const steps = ['Analisando...', 'Buscando...', 'Verificando...', 'Notificando...'];
+  const stepInterval = setInterval(() => {
+    if (step < steps.length) {
+      document.getElementById('sst').textContent = steps[step];
+      document.getElementById('sprog').style.width = ((step + 1) / steps.length * 100) + '%';
+      step++;
     }
-  }, 2000);
+  }, 1500);
   
   searchInterval = setInterval(async () => {
     if (!currentRequestId) return;
     try {
       const requests = await apiFetch('/api/requests/my-requests');
       const request = requests.find(r => r.id === currentRequestId);
-      
       if (request && request.providerId && request.status !== 'aguardando') {
         clearInterval(searchInterval);
-        clearInterval(phaseInterval);
-        currentProviderId = request.providerId;
+        clearInterval(stepInterval);
         T('Profissional encontrado!');
-        await loadProviderInfo(request.providerId);
         nav('s-found');
+        startStatusCheck();
       }
     } catch(e) {}
   }, 5000);
@@ -988,8 +867,8 @@ function startSearchPolling() {
   setTimeout(() => {
     if (searchInterval) {
       clearInterval(searchInterval);
-      clearInterval(phaseInterval);
-      T('Nenhum profissional disponível no momento. Tente novamente.');
+      clearInterval(stepInterval);
+      T('Nenhum profissional disponível');
       nav('s-home');
     }
   }, 60000);
@@ -1000,27 +879,7 @@ function cancelSearch() {
   nav('s-home');
 }
 
-async function loadProviderInfo(providerId) {
-  try {
-    const response = await fetch(`${API_URL}/api/location/current/${providerId}`);
-    if (response.ok) {
-      const location = await response.json();
-      document.getElementById('fn-dist').textContent = '~' + calculateDistance(userLocation?.lat, userLocation?.lng, location.latitude, location.longitude).toFixed(1) + ' km';
-    }
-  } catch(e) {}
-  
-  document.getElementById('fn-name').textContent = 'Profissional';
-  document.getElementById('fn-rating').textContent = '4.8 ⭐';
-  document.getElementById('fn-stars').textContent = '4.8 ⭐';
-  document.getElementById('fn-svcs').textContent = '127';
-  document.getElementById('ipsvc').textContent = CATS[selectedCategory]?.s[selectedService]?.n || 'Serviço';
-  document.getElementById('prog-name').textContent = 'Profissional';
-  document.getElementById('fval').textContent = selectedPrice;
-  
-  startStatusPolling();
-}
-
-function startStatusPolling() {
+function startStatusCheck() {
   if (statusInterval) clearInterval(statusInterval);
   statusInterval = setInterval(async () => {
     if (!currentRequestId) return;
@@ -1029,191 +888,112 @@ function startStatusPolling() {
       const request = requests.find(r => r.id === currentRequestId);
       if (request && request.status === 'finalizado') {
         clearInterval(statusInterval);
+        document.getElementById('fval').textContent = request.value;
         nav('s-rate');
       }
-      if (request && request.status === 'cancelado') {
-        clearInterval(statusInterval);
-        T('Solicitação cancelada');
-        nav('s-home');
-      }
-      updateTimeline(request?.status);
+      updateStatusTimeline(request?.status);
     } catch(e) {}
   }, 5000);
 }
 
-function updateTimeline(status) {
+function updateStatusTimeline(status) {
   const tl = document.getElementById('tl');
   if (!tl) return;
-  
-  const steps = [
-    { label: 'Solicitação enviada', status: 'aguardando' },
-    { label: 'Profissional a caminho', status: 'a_caminho' },
-    { label: 'Chegou ao local', status: 'chegou' },
-    { label: 'Serviço iniciado', status: 'iniciado' },
-    { label: 'Serviço finalizado', status: 'finalizado' }
-  ];
-  
-  let currentStep = steps.findIndex(s => s.status === status);
-  if (currentStep === -1) currentStep = 0;
-  
+  const steps = [{ s:'aguardando', l:'Solicitação enviada' }, { s:'a_caminho', l:'Profissional a caminho' }, { s:'chegou', l:'Chegou ao local' }, { s:'iniciado', l:'Serviço iniciado' }, { s:'finalizado', l:'Serviço finalizado' }];
+  let current = steps.findIndex(s => s.s === status);
+  if (current === -1) current = 0;
   tl.innerHTML = steps.map((step, i) => `
     <div class="tli">
-      <div style="display:flex;flex-direction:column;align-items:center">
-        <div class="tld ${i <= currentStep ? 'dk' : 'wt'}">${i <= currentStep ? '✓' : i + 1}</div>
-        ${i < steps.length - 1 ? '<div class="tll ' + (i < currentStep ? 'dk' : '') + '" style="height:32px"></div>' : ''}
-      </div>
-      <div style="padding:3px 0 22px 12px">
-        <div style="font-size:14px;font-weight:700;color:${i <= currentStep ? 'var(--dk)' : 'var(--g6)'}">${step.label}</div>
-      </div>
+      <div><div class="tld ${i <= current ? 'dk' : 'wt'}">${i <= current ? '✓' : i + 1}</div>${i < 4 ? '<div class="tll"></div>' : ''}</div>
+      <div><div style="font-weight:700">${step.l}</div></div>
     </div>
   `).join('');
 }
 
 function cancelRequest() {
   if (currentRequestId) {
-    apiFetch('/api/requests/update-status', { 
-      method: 'POST', 
-      body: JSON.stringify({ requestId: currentRequestId, status: 'cancelado' }) 
-    }).catch(() => {});
+    apiFetch('/api/requests/update-status', { method: 'POST', body: JSON.stringify({ requestId: currentRequestId, status: 'cancelado' }) }).catch(() => {});
   }
   nav('s-home');
   T('Solicitação cancelada');
 }
 
-function callProvider() {
-  T('📞 Ligando para a profissional...');
-  setTimeout(() => T('🔊 Chamando...'), 1000);
-}
+function callProvider() { T('📞 Ligando...'); }
 
 // =============================================
-// AVALIAÇÃO (usando /api/requests/rate)
-// =============================================
+// AVALIAÇÃO
 function setStars(n) {
   selectedRating = n;
-  document.querySelectorAll('#rstars .rs2').forEach((s, i) => {
-    s.textContent = i < n ? '★' : '☆';
-    s.classList.toggle('on', i < n);
-  });
+  document.querySelectorAll('#rstars .rs2').forEach((s, i) => { s.textContent = i < n ? '★' : '☆'; });
 }
 
 async function submitRating() {
   const review = document.getElementById('review-text')?.value || '';
-  if (!currentRequestId) {
-    skipRating();
-    return;
-  }
+  if (!currentRequestId) { skipRating(); return; }
   try {
-    await apiFetch('/api/requests/rate', {
-      method: 'POST',
-      body: JSON.stringify({ requestId: currentRequestId, rating: selectedRating || 5, review })
-    });
-    T('Obrigada pela avaliação!');
+    await apiFetch('/api/requests/rate', { method: 'POST', body: JSON.stringify({ requestId: currentRequestId, rating: selectedRating || 5, review }) });
+    T('Obrigada!');
   } catch(e) {}
   currentRequestId = null;
   nav('s-home');
 }
 
-function skipRating() {
-  currentRequestId = null;
-  nav('s-home');
-}
+function skipRating() { currentRequestId = null; nav('s-home'); }
 
 // =============================================
-// MEUS PEDIDOS (usando /api/requests/my-requests)
-// =============================================
+// MEUS PEDIDOS
 async function loadMyRequests() {
   if (!accessToken) return;
   try {
     const requests = await apiFetch('/api/requests/my-requests');
     const container = document.getElementById('requests-list');
     if (!container) return;
-    
-    if (requests.length === 0) {
-      container.innerHTML = '<div style="text-align:center;color:var(--g5);padding:40px">Nenhum pedido encontrado</div>';
-      return;
-    }
-    
+    if (requests.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--g5)">Nenhum pedido</div>'; return; }
     container.innerHTML = requests.map(r => `
-      <div style="background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:var(--shb)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <span style="font-weight:800">${escHtml(r.category)}</span>
-          <span class="bd ${r.status === 'finalizado' ? 'bgk' : r.status === 'aguardando' ? 'bwn' : 'bin'}">${r.status}</span>
-        </div>
-        <div style="font-size:13px;color:var(--g5);margin-bottom:8px">${escHtml(r.description)}</div>
-        <div style="font-size:13px;color:var(--g5)">📍 ${escHtml(r.address)}</div>
+      <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)">
+        <div style="display:flex;justify-content:space-between"><span style="font-weight:800">${r.category}</span><span class="bd2 ${r.status === 'finalizado' ? 'bgk' : 'bpk2'}">${r.status}</span></div>
+        <div style="font-size:13px;color:var(--g5);margin:8px 0">${r.description}</div>
+        <div style="font-size:13px">📍 ${r.address}</div>
         <div style="margin-top:8px;font-weight:700;color:var(--pk)">💰 ${r.value}</div>
       </div>
     `).join('');
-    
-    if (curScr !== 's-requests') nav('s-requests');
   } catch(e) { T(e.message); }
 }
 
 // =============================================
 // MAPAS
-// =============================================
-let searchMap = null;
-let foundMap = null;
+let searchMap = null, foundMap = null;
 
 function initSearchMap() {
   if (searchMap) { searchMap.invalidateSize(); return; }
   if (typeof L === 'undefined') { setTimeout(initSearchMap, 200); return; }
-  
   const lat = userLocation?.lat || -23.5505;
   const lng = userLocation?.lng || -46.6333;
-  
   searchMap = L.map('map1').setView([lat, lng], 15);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 20 }).addTo(searchMap);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd' }).addTo(searchMap);
   L.control.zoom({ position: 'topright' }).addTo(searchMap);
-  
-  const meIcon = L.divIcon({ html: '<div class="mk-me"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
-  L.marker([lat, lng], { icon: meIcon }).addTo(searchMap).bindPopup('Você está aqui');
+  L.marker([lat, lng], { icon: L.divIcon({ html: '<div class="mk-me"></div>', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(searchMap);
 }
 
 function initFoundMap() {
   if (foundMap) { foundMap.invalidateSize(); return; }
   if (typeof L === 'undefined') { setTimeout(initFoundMap, 200); return; }
-  
   const lat = userLocation?.lat || -23.5505;
   const lng = userLocation?.lng || -46.6333;
-  
   foundMap = L.map('map2').setView([lat, lng], 14);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 20 }).addTo(foundMap);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd' }).addTo(foundMap);
   L.control.zoom({ position: 'topright' }).addTo(foundMap);
-  
-  const meIcon = L.divIcon({ html: '<div class="mk-me"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
-  L.marker([lat, lng], { icon: meIcon }).addTo(foundMap).bindPopup('Sua localização');
+  L.marker([lat, lng], { icon: L.divIcon({ html: '<div class="mk-me"></div>', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(foundMap);
 }
-
-function calculateDistance(lat1, lng1, lat2, lng2) {
-  if (!lat1 || !lng1 || !lat2 || !lng2) return 0;
-  const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLng = (lng2 - lng1) * Math.PI / 180;
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-            Math.sin(dLng/2) * Math.sin(dLng/2);
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
-
-function escHtml(s) { return String(s || '').replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m] || m)); }
 
 // =============================================
 // INICIALIZAÇÃO
-// =============================================
 document.addEventListener('DOMContentLoaded', () => {
   buildTabs();
   buildGrid();
-  getUserLocation();
   
   if (accessToken) {
-    apiFetch('/api/auth/me').then(res => {
-      if (res.id) {
-        currentUser = res;
-        updateUserUI();
-        nav('s-home');
-      }
-    }).catch(() => {});
+    apiFetch('/api/auth/me').then(res => { if (res.id) { currentUser = res; updateUserUI(); nav('s-home'); } }).catch(() => {});
   }
   
   const urlParams = new URLSearchParams(window.location.search);
